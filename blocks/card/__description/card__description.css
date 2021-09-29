@@ -1,0 +1,9 @@
+.card__description {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80px;
+  /* border-radius: 0 0 10px 10px; */
+  margin-left: 21px;
+  margin-right: 15px;
+}

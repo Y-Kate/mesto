@@ -1,0 +1,11 @@
+.profile__modify {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #FFF;
+  box-sizing: border-box;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
