@@ -5,3 +5,20 @@
   gap: 20px;
   padding-top: 36px;
 }
+
+@media (min-width: 620px) {
+  .catalog {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 361px);
+    gap: 17px;
+  }
+}
+
+@media (min-width: 890px) {
+  .catalog {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(2, 361px);
+    gap: 17px;
+  }
+}
+

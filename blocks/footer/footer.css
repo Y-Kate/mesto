@@ -1,3 +1,20 @@
 .footer {
-  min-height: 98px;
+  padding: 50px 19px 44px;
+  width: 100%;
+  max-width: 880px;
+  box-sizing: border-box;
+}
+
+
+@media (min-width: 620px) {
+  .footer {
+    padding-left: 10px;
+  }
+}
+
+
+@media (min-width: 890px) {
+  .footer {
+    padding-left: 0;
+  }
 }

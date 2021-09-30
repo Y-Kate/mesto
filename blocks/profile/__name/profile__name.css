@@ -3,5 +3,19 @@
   font-weight: 500;
   line-height: 33px;
   margin: 0;
-  /* padding-right: 10px; */
 }
+
+@media (min-width: 620px) {
+  .profile__name {
+    font-size: 36px;
+    line-height: 38px;
+  }
+}
+
+
+/* @media (min-width: 620px) {
+  .profile__name {
+    font-size: 42px;
+    line-height: 48px;
+  }
+} */

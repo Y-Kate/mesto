@@ -2,7 +2,6 @@
   border: 2px solid #fff;
   border-radius: 2px;
   box-sizing: border-box;
-  width: 100%;
   min-width: 282px;
   background: transparent;
   background-image: url(../../../images/cross.svg);
@@ -10,4 +9,16 @@
   background-repeat: no-repeat;
   background-size: 16px;
   min-height: 50px;
+}
+
+.profile__button-add:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s linear;
+}
+
+@media (min-width: 620px) {
+  .profile__button-add {
+    min-width: 120px;
+  }
 }

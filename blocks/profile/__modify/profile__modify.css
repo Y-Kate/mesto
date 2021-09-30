@@ -12,3 +12,9 @@
   top: 8px;
   right: -28px;
 }
+
+.profile__modify:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s linear;
+}
