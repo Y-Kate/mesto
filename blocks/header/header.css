@@ -8,5 +8,6 @@
 @media (min-width: 620px) {
   .header {
     /* width: 880px; */
+    min-height: 120px;
   }
 }

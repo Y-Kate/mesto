@@ -18,3 +18,12 @@
   opacity: 0.6;
   transition: opacity 0.3s linear;
 }
+
+@media (min-width: 620px) {
+  .profile__modify {
+    top: 15px;
+    width: 24px;
+    height: 24px;
+    right: -44px;
+  }
+}

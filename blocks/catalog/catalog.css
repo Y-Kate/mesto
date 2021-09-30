@@ -19,6 +19,8 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: repeat(2, 361px);
     gap: 17px;
+    padding-top: 22px;
+    column-gap: 17px;
+    row-gap: 20px;
   }
 }
-

@@ -2,3 +2,10 @@
   padding-left: 27px;
   padding-top: 28px;
 }
+
+@media (min-width: 620px) {
+  .header__logo {
+    padding-top: 45px;
+    padding-left: 0;
+  }
+}

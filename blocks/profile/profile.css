@@ -9,8 +9,6 @@
 @media (min-width: 620px) {
   .profile {
     flex-direction: row;
-    /* min-width: 581px; */
-    /* justify-content: space-between; */
-
+    justify-content: space-between;
   }
 }

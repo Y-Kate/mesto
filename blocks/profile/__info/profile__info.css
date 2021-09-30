@@ -8,5 +8,8 @@
 @media (min-width: 620px) {
   .profile__info {
     align-items: flex-start;
+    width: 100%;
+    margin-right: 30px;
+    margin-top: 10px;
   }
 }

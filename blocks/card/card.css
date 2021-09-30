@@ -1,9 +1,6 @@
 .card {
   display: flex;
   flex-direction: column;
-  /* width: 282px; */
   border-radius: 10px;
   background-color: #fff;
-  /* margin-top: 20px; */
-  /* height: 361px; */
 }

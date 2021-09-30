@@ -12,10 +12,9 @@
   }
 }
 
-
-/* @media (min-width: 620px) {
+@media (min-width: 890px) {
   .profile__name {
     font-size: 42px;
     line-height: 48px;
   }
-} */
+}
