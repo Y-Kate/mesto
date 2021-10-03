@@ -7,4 +7,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 190px;
+}
+
+@media (min-width: 620px) {
+  .card__title {
+    max-width: 220px;
+  }
 }
