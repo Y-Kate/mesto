@@ -5,6 +5,12 @@
   border: none;
   background-size: cover;
   position: absolute;
-  right: 0;
-  top: -35px;
+  right: 2px;
+  top: -37px;
+}
+
+.popup__close:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s linear;
 }

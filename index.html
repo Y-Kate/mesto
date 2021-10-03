@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
   <link rel="stylesheet" href="./pages/index.css">
-  <script src="./scripts/index.js"></script>
 </head>
 <body class="page">
     <header class="header">
@@ -72,14 +71,19 @@
     <footer class="footer">
       <p class="footer__copyright">©2021 Kate_Y</p>
     </footer>
-    <div class="popup popup_opened">
+
+    <div class="popup">
       <div class="popup__container">
         <button class="popup__close" type="submit"></button>
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <input type="text" placeholder="Имя" class="popup__input popup__input_type_name">
-        <input type="text" placeholder="Профессия" class="popup__input popup__input_type_profession">
-        <button type="submit" class="popup__button-save">Сохранить</button>
+        <form class="form-edit">
+          <h3 class="form-edit__title">Редактировать профиль</h3>
+          <input type="text" placeholder="Имя" class="form-edit__input form-edit__input_type_name">
+          <input type="text" placeholder="О себе" class="form-edit__input form-edit__input_type_profession">
+          <button type="submit" class="form-edit__button-save">Сохранить</button>
+        </form>
       </div>
     </div>
+
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

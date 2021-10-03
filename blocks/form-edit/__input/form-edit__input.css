@@ -1,4 +1,4 @@
-.popup__input {
+.form-edit__input {
   min-width: 238px;
   min-height: 28px;
   border: none;
@@ -8,9 +8,16 @@
   font-weight: 400;
   color: #000;
   margin-bottom: 30px;
-  padding: 0;
+  padding-bottom: 0;
+  vertical-align: top;
 }
 
-.popup__input:last-of-type {
+.form-edit__input:last-of-type {
   margin-bottom: 45px;
+}
+
+@media (min-width: 620px) {
+  .form-edit__input {
+    min-width: 358px;
+  }
 }
