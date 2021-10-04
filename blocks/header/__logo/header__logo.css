@@ -6,6 +6,13 @@
 @media (min-width: 620px) {
   .header__logo {
     padding-top: 45px;
+    padding-left: 14px;
+  }
+}
+
+@media (min-width: 890px) {
+  .header__logo {
+    padding-top: 45px;
     padding-left: 0;
   }
 }

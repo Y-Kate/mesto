@@ -8,6 +8,12 @@
 
 @media (min-width: 620px) {
   .profile__avatar {
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 890px) {
+  .profile__avatar {
     margin-right: 30px;
   }
 }
