@@ -1,5 +1,6 @@
 @media (min-width: 620px) {
   .profile__name-overlay {
-      position: relative;
+      display: flex;
+      align-items: flex-end;
   }
 }

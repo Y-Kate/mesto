@@ -21,9 +21,10 @@
 
 @media (min-width: 620px) {
   .profile__modify {
-    top: 15px;
     width: 24px;
     height: 24px;
-    right: -44px;
+    position: static;
+    margin-left: 18px;
+    margin-bottom: 8px;
   }
 }
