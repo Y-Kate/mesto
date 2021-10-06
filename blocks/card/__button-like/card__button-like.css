@@ -6,12 +6,12 @@
   height: 19px;
   padding: 0;
   border: none;
+  transition: opacity 0.3s linear;
 }
 
 .card__button-like:hover {
   cursor: pointer;
   opacity: 0.5;
-  transition: opacity 0.3s linear;
 }
 
 .card__button-like:active {

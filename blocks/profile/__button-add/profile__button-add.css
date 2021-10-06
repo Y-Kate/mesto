@@ -9,12 +9,12 @@
   background-repeat: no-repeat;
   background-size: 16px;
   min-height: 50px;
+  transition: opacity 0.3s linear;
 }
 
 .profile__button-add:hover {
   cursor: pointer;
   opacity: 0.6;
-  transition: opacity 0.3s linear;
 }
 
 @media (min-width: 620px) {

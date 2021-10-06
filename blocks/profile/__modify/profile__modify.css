@@ -11,12 +11,12 @@
   position: absolute;
   top: 8px;
   right: -28px;
+  transition: opacity 0.3s linear;
 }
 
 .profile__modify:hover {
   cursor: pointer;
   opacity: 0.6;
-  transition: opacity 0.3s linear;
 }
 
 @media (min-width: 620px) {
