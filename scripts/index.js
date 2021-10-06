@@ -22,14 +22,14 @@ function formSubmitHandler (evt) {
   closePopup();
 }
 
-formProfileEdit.addEventListener('submit', formSubmitHandler);
-
-buttonEdit.addEventListener('click', function () {
+function handleClickButtonEdit() {
   inputName.value = profileNameElement.textContent;
   inputAbout.value = profileDescriptionElement.textContent;
   openPopup();
-});
+}
 
-popupCross.addEventListener('click', function () {
-  closePopup();
- });
+formProfileEdit.addEventListener('submit', formSubmitHandler);
+
+buttonEdit.addEventListener('click', handleClickButtonEdit);
+
+popupCross.addEventListener('click', closePopup);
