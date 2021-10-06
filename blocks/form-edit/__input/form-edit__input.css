@@ -1,6 +1,5 @@
 .form-edit__input {
   min-width: 238px;
-  /* min-height: 28px; */
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-size: 14px;
@@ -9,7 +8,6 @@
   color: #000;
   margin-bottom: 30px;
   padding: 0 0 13px 0;
-  /* vertical-align: text-top; */
 }
 
 .form-edit__input:last-of-type {
