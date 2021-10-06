@@ -14,7 +14,7 @@
   }
 }
 
-@media (min-width: 890px) {
+@media (min-width: 918px) {
   .catalog {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: repeat(2, 361px);
