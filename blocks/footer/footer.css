@@ -7,11 +7,11 @@
 
 @media (min-width: 620px) {
   .footer {
-    padding-left: 10px;
+    padding-left: 20px;
   }
 }
 
-@media (min-width: 890px) {
+@media (min-width: 918px) {
   .footer {
     padding-left: 0;
     padding-top: 68px;

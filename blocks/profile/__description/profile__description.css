@@ -19,7 +19,7 @@
   }
 }
 
-@media (min-width: 890px) {
+@media (min-width: 918px) {
   .profile__description {
     max-width: 500px;
   }
