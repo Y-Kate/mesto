@@ -8,6 +8,7 @@
   color: #000;
   margin-bottom: 30px;
   padding: 0 0 13px 0;
+  outline: none;
 }
 
 .form-edit__input:last-of-type {
