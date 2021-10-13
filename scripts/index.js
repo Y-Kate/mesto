@@ -34,20 +34,36 @@ const initialCards = [
   }
 ];
 
-const formCard = document.querySelector('.card');
+const formCard = document.querySelector('#templateCard').content;
+const catalogCards = document.querySelector('.catalog');
+
+
+
 function rendorCard (card) {
-  return `
-  <img src="${card.link}" alt="${card.name}" class="card__image">
-  <div class="card__description">
-    <h2 class="card__title">${card.name}</h2>
-    <button type="button" class="card__button-like" aria-label="Нравится"></button>
-  </div>
-  `;
+  
+  // return `<img src="${card.link}" alt="${card.name}" class="card__image">
+  // <div class="card__description">
+  //   <h2 class="card__title">${card.name}</h2>
+  //   <button type="button" class="card__button-like" aria-label="Нравится"></button>
+  // </div>`;
+  const cardElement = formCard.querySelector('.card').cloneNode(true);
+  cardElement.querySelector('.card__image').src = card.link;
+  cardElement.querySelector('.card__image').alt = card.name;
+  cardElement.querySelector('.card__title').textContent = card.name;
+  catalogCards.append(cardElement);
+  // console.log(cardElement);
+
+
 };
 
-const cards = initialCards.map((initialCard) => rendorCard(initialCard));
+initialCards.forEach((initialCard) => rendorCard(initialCard));
 
-console.log(cards);
+// formCard.innerHTML = initialCards.map((initialCard) => rendorCard(initialCard));
+// console.log(cardElement);
+// formCard.innerHTML = initialCards.map(rendorCard);
+// const cards = initialCards.map((initialCard) => rendorCard(initialCard));
+
+// console.log(cards);
 
 
 function closePopup () {
