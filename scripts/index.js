@@ -3,9 +3,10 @@ const popup = document.querySelector('.popup');
 const popupCross = document.querySelector('.popup__close');
 const profileNameElement = document.querySelector('.profile__name');
 const profileDescriptionElement  = document.querySelector('.profile__description');
-const inputName = document.querySelector('.form-edit__input_type_name');
-const inputAbout = document.querySelector('.form-edit__input_type_profession');
-const formProfileEdit = document.querySelector('.form-edit');
+const inputName = document.querySelector('.form-popup__input_type_name');
+const inputAbout = document.querySelector('.form-popup__input_type_profession');
+const formProfileEdit = document.querySelector('.form-popup_type_edit');
+
 //изменение из 6 спринта в const
 const initialCards = [
   {
