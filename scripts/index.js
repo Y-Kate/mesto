@@ -1,5 +1,5 @@
 const buttonEdit = document.querySelector('.profile__modify');
-const popup = document.querySelector('.popup');
+const popupEdit = document.querySelector('.popup_type_edit');
 const popupCross = document.querySelector('.popup__close');
 const profileNameElement = document.querySelector('.profile__name');
 const profileDescriptionElement  = document.querySelector('.profile__description');
@@ -37,7 +37,9 @@ const initialCards = [
 
 const formCard = document.querySelector('#templateCard').content;
 const catalogCards = document.querySelector('.catalog');
-
+const buttonAdd = document.querySelector('.profile__button-add');
+const popupAdd = document.querySelector('.popup_type_add');
+// const formCardAdd = document.querySelector('.form-popup_type_add');
 
 
 function rendorCard (card) {
@@ -67,11 +69,11 @@ initialCards.forEach((initialCard) => rendorCard(initialCard));
 // console.log(cards);
 
 
-function closePopup () {
+function closePopup (popup) {
   popup.classList.remove('popup_opened');
 }
 
-function openPopup () {
+function openPopup (popup) {
   popup.classList.add('popup_opened');
 }
 
@@ -79,17 +81,27 @@ function formSubmitHandler (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   profileNameElement.textContent = inputName.value;
   profileDescriptionElement.textContent = inputAbout.value;
-  closePopup();
+  closePopup(popupEdit);
 }
 
 function handleClickButtonEdit() {
   inputName.value = profileNameElement.textContent;
   inputAbout.value = profileDescriptionElement.textContent;
-  openPopup();
+  openPopup(popupEdit);
+}
+
+function handleClickButtonAdd() {
+  openPopup(popupAdd);
 }
 //изменение из 6 спринта в функциях
 formProfileEdit.addEventListener('submit', formSubmitHandler);
 
 buttonEdit.addEventListener('click', handleClickButtonEdit);
 
-popupCross.addEventListener('click', closePopup);
+popupCross.addEventListener('click', () => {
+  closePopup(popupEdit);
+});
+
+buttonAdd.addEventListener('click', handleClickButtonAdd);
+
+// formCardAdd.addEventListener('submit', formSubmitHandler);
