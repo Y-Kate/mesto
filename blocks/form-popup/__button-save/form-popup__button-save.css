@@ -1,4 +1,4 @@
-.form-edit__button-save {
+.form-popup__button-save {
   background-color: #000;
   color: #fff;
   min-width: 238px;
@@ -11,14 +11,14 @@
   border-color: #000;
 }
 
-.form-edit__button-save:hover {
+.form-popup__button-save:hover {
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.3s linear;
 }
 
 @media (min-width: 620px) {
-  .form-edit__button-save {
+  .form-popup__button-save {
     min-width: 358px;
     min-height: 50px;
     font-size: 18px;

@@ -1,4 +1,4 @@
-.form-edit__input {
+.form-popup__input {
   min-width: 238px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -11,12 +11,12 @@
   outline: none;
 }
 
-.form-edit__input:last-of-type {
+.form-popup__input:last-of-type {
   margin-bottom: 45px;
 }
 
 @media (min-width: 620px) {
-  .form-edit__input {
+  .form-popup__input {
     min-width: 358px;
   }
 }

@@ -74,15 +74,25 @@
     <div class="popup">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
-        <form class="form-edit" name="edit">
-          <h3 class="form-edit__title">Редактировать профиль</h3>
-          <input name="name" type="text" placeholder="Имя" class="form-edit__input form-edit__input_type_name">
-          <input name="about" type="text" placeholder="О себе" class="form-edit__input form-edit__input_type_profession">
-          <button type="submit" class="form-edit__button-save" aria-label="Сохранить">Сохранить</button>
+        <form class="form-popup" name="edit">
+          <h3 class="form-popup__title">Редактировать профиль</h3>
+          <input name="name" type="text" placeholder="Имя" class="form-popup__input form-popup__input_type_name">
+          <input name="about" type="text" placeholder="О себе" class="form-popup__input form-popup__input_type_profession">
+          <button type="submit" class="form-popup__button-save" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
     </div>
-    
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <form class="form-popup" name="edit">
+          <h3 class="form-popup__title">Новое место</h3>
+          <input name="name" type="text" placeholder="Название" class="form-popup__input form-popup__input_type_name">
+          <input name="about" type="text" placeholder="Ссылка на картинку" class="form-popup__input form-popupt__input_type_profession">
+          <button type="submit" class="form-popup__button-save" aria-label="Создать">Создать</button>
+        </form>
+      </div>
+    </div>
 
 <template id="templateCard">
   <article class="card">
