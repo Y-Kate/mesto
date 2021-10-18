@@ -1,13 +1,26 @@
+// кнопки на странице
 const buttonEdit = document.querySelector('.profile__modify');
-const popupEdit = document.querySelector('.popup_type_edit');
-const popupCross = document.querySelector('.popup__close');
+const buttonAdd = document.querySelector('.profile__button-add');
+
+// профиль
 const profileNameElement = document.querySelector('.profile__name');
 const profileDescriptionElement  = document.querySelector('.profile__description');
-const inputName = document.querySelector('.form-popup__input_type_name');
-const inputAbout = document.querySelector('.form-popup__input_type_profession');
-const formProfileEdit = document.querySelector('.form-popup_type_edit');
 
-//изменение из 6 спринта в const
+// popup редактирования профиля
+const popupEdit = document.querySelector('.popup_type_edit');
+const crossPopupEdit = popupEdit.querySelector('.popup__close');
+const inputName = popupEdit.querySelector('.form-popup__input_type_name');
+const inputAbout = popupEdit.querySelector('.form-popup__input_type_profession');
+const formProfileEdit = popupEdit.querySelector('.form-popup_type_edit');
+
+// popup добавления карточки
+const popupAdd = document.querySelector('.popup_type_add');
+const crossPopupAdd = popupAdd.querySelector('.popup__close');
+
+
+// карточки
+const formCard = document.querySelector('#templateCard').content;
+const catalogCards = document.querySelector('.catalog');
 const initialCards = [
   {
     name: 'Архыз',
@@ -35,40 +48,18 @@ const initialCards = [
   }
 ];
 
-const formCard = document.querySelector('#templateCard').content;
-const catalogCards = document.querySelector('.catalog');
-const buttonAdd = document.querySelector('.profile__button-add');
-const popupAdd = document.querySelector('.popup_type_add');
-// const formCardAdd = document.querySelector('.form-popup_type_add');
-
-
+// функции для карточек
 function rendorCard (card) {
-  
-  // return `<img src="${card.link}" alt="${card.name}" class="card__image">
-  // <div class="card__description">
-  //   <h2 class="card__title">${card.name}</h2>
-  //   <button type="button" class="card__button-like" aria-label="Нравится"></button>
-  // </div>`;
   const cardElement = formCard.querySelector('.card').cloneNode(true);
   cardElement.querySelector('.card__image').src = card.link;
   cardElement.querySelector('.card__image').alt = card.name;
   cardElement.querySelector('.card__title').textContent = card.name;
   catalogCards.append(cardElement);
-  // console.log(cardElement);
-
-
 };
 
 initialCards.forEach((initialCard) => rendorCard(initialCard));
 
-// formCard.innerHTML = initialCards.map((initialCard) => rendorCard(initialCard));
-// console.log(cardElement);
-// formCard.innerHTML = initialCards.map(rendorCard);
-// const cards = initialCards.map((initialCard) => rendorCard(initialCard));
-
-// console.log(cards);
-
-
+// функции popup
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
 }
@@ -77,6 +68,7 @@ function openPopup (popup) {
   popup.classList.add('popup_opened');
 }
 
+// обработчики форм
 function formSubmitHandler (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   profileNameElement.textContent = inputName.value;
@@ -84,6 +76,7 @@ function formSubmitHandler (evt) {
   closePopup(popupEdit);
 }
 
+// обработчики слушателей кнопок
 function handleClickButtonEdit() {
   inputName.value = profileNameElement.textContent;
   inputAbout.value = profileDescriptionElement.textContent;
@@ -93,15 +86,14 @@ function handleClickButtonEdit() {
 function handleClickButtonAdd() {
   openPopup(popupAdd);
 }
-//изменение из 6 спринта в функциях
+
+// слушатели
 formProfileEdit.addEventListener('submit', formSubmitHandler);
-
 buttonEdit.addEventListener('click', handleClickButtonEdit);
-
-popupCross.addEventListener('click', () => {
+crossPopupEdit.addEventListener('click', () => {
   closePopup(popupEdit);
 });
-
 buttonAdd.addEventListener('click', handleClickButtonAdd);
-
-// formCardAdd.addEventListener('submit', formSubmitHandler);
+crossPopupAdd.addEventListener('click', () => {
+  closePopup(popupAdd);
+});
