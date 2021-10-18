@@ -11,16 +11,20 @@ const popupEdit = document.querySelector('.popup_type_edit');
 const crossPopupEdit = popupEdit.querySelector('.popup__close');
 const inputName = popupEdit.querySelector('.form-popup__input_type_name');
 const inputAbout = popupEdit.querySelector('.form-popup__input_type_profession');
-const formProfileEdit = popupEdit.querySelector('.form-popup_type_edit');
+const formProfileEdit = popupEdit.querySelector('.form-popup');
 
 // popup добавления карточки
 const popupAdd = document.querySelector('.popup_type_add');
 const crossPopupAdd = popupAdd.querySelector('.popup__close');
-
+const formCardAdd = popupAdd.querySelector('.form-popup');
+const inputCardName = popupAdd.querySelector('.form-popup__input_type_name-card');
+const inputCardLink = popupAdd.querySelector('.form-popup__input_type_link-card');
 
 // карточки
 const formCard = document.querySelector('#templateCard').content;
 const catalogCards = document.querySelector('.catalog');
+
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -54,7 +58,7 @@ function rendorCard (card) {
   cardElement.querySelector('.card__image').src = card.link;
   cardElement.querySelector('.card__image').alt = card.name;
   cardElement.querySelector('.card__title').textContent = card.name;
-  catalogCards.append(cardElement);
+  catalogCards.prepend(cardElement);
 };
 
 initialCards.forEach((initialCard) => rendorCard(initialCard));
@@ -69,11 +73,20 @@ function openPopup (popup) {
 }
 
 // обработчики форм
-function formSubmitHandler (evt) {
+function handleSubmitFormEdit (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   profileNameElement.textContent = inputName.value;
   profileDescriptionElement.textContent = inputAbout.value;
   closePopup(popupEdit);
+}
+
+function handleSubmitFormAdd (evt) {
+  evt.preventDefault();
+  const newCard = {
+    name: inputCardName.value,
+    link: inputCardLink.value
+  };
+  rendorCard(newCard);
 }
 
 // обработчики слушателей кнопок
@@ -87,13 +100,19 @@ function handleClickButtonAdd() {
   openPopup(popupAdd);
 }
 
-// слушатели
-formProfileEdit.addEventListener('submit', formSubmitHandler);
+// слушатели кнопок на странице
 buttonEdit.addEventListener('click', handleClickButtonEdit);
+buttonAdd.addEventListener('click', handleClickButtonAdd);
+
+// слушатели форм
+formProfileEdit.addEventListener('submit', handleSubmitFormEdit);
+formCardAdd.addEventListener('submit', handleSubmitFormAdd);
+
+// слушатели cross
 crossPopupEdit.addEventListener('click', () => {
   closePopup(popupEdit);
 });
-buttonAdd.addEventListener('click', handleClickButtonAdd);
 crossPopupAdd.addEventListener('click', () => {
   closePopup(popupAdd);
 });
+
