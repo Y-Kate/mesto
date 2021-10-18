@@ -87,6 +87,9 @@ function handleSubmitFormAdd (evt) {
     link: inputCardLink.value
   };
   rendorCard(newCard);
+  closePopup(popupAdd);
+  inputCardName.value = '';
+  inputCardLink.value = '';
 }
 
 // обработчики слушателей кнопок
