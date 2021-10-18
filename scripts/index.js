@@ -24,7 +24,6 @@ const inputCardLink = popupAdd.querySelector('.form-popup__input_type_link-card'
 const formCard = document.querySelector('#templateCard').content;
 const catalogCards = document.querySelector('.catalog');
 
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -55,10 +54,19 @@ const initialCards = [
 // функции для карточек
 function rendorCard (card) {
   const cardElement = formCard.querySelector('.card').cloneNode(true);
+
+  // наполнение информацией
   cardElement.querySelector('.card__image').src = card.link;
   cardElement.querySelector('.card__image').alt = card.name;
   cardElement.querySelector('.card__title').textContent = card.name;
+
+  // слушатели card
+  const buttonLike = cardElement.querySelector('.card__button-like');
   catalogCards.prepend(cardElement);
+  buttonLike.addEventListener('click', () => {
+    buttonLike.classList.add('card__button-like_active');
+  });
+
 };
 
 initialCards.forEach((initialCard) => rendorCard(initialCard));
