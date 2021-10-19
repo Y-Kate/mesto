@@ -1,3 +1,6 @@
+// const catalogCard = document.querySelector('.catalog');
+// const catalogCardAdd = catalogCard.querySelector('.card');
+
 // кнопки на странице
 const buttonEdit = document.querySelector('.profile__modify');
 const buttonAdd = document.querySelector('.profile__button-add');
@@ -60,12 +63,19 @@ function rendorCard (card) {
   cardElement.querySelector('.card__image').alt = card.name;
   cardElement.querySelector('.card__title').textContent = card.name;
 
-  // слушатели card
+  // слушатели like
   const buttonLike = cardElement.querySelector('.card__button-like');
-  catalogCards.prepend(cardElement);
   buttonLike.addEventListener('click', () => {
     buttonLike.classList.toggle('card__button-like_active');
   });
+
+  // слушатели trash
+  const buttonTrash = cardElement.querySelector('.card__button-trash');
+  buttonTrash.addEventListener('click', () => {
+    cardElement.remove();
+  });
+
+  catalogCards.prepend(cardElement);
 };
 
 initialCards.forEach((initialCard) => rendorCard(initialCard));
@@ -125,4 +135,6 @@ crossPopupEdit.addEventListener('click', () => {
 crossPopupAdd.addEventListener('click', () => {
   closePopup(popupAdd);
 });
+
+// слушатель корзины
 
