@@ -1,6 +1,3 @@
-// const catalogCard = document.querySelector('.catalog');
-// const catalogCardAdd = catalogCard.querySelector('.card');
-
 // кнопки на странице
 const buttonEdit = document.querySelector('.profile__modify');
 const buttonAdd = document.querySelector('.profile__button-add');
@@ -22,6 +19,10 @@ const crossPopupAdd = popupAdd.querySelector('.popup__close');
 const formCardAdd = popupAdd.querySelector('.form-popup');
 const inputCardName = popupAdd.querySelector('.form-popup__input_type_name-card');
 const inputCardLink = popupAdd.querySelector('.form-popup__input_type_link-card');
+
+// popup просмотра карточки
+const popupWithImage = document.querySelector('.popup_type_img');
+const crossPopupImg = popupWithImage.querySelector('.popup__close');
 
 // карточки
 const formCard = document.querySelector('#templateCard').content;
@@ -63,6 +64,7 @@ function rendorCard (card) {
   cardElement.querySelector('.card__image').alt = card.name;
   cardElement.querySelector('.card__title').textContent = card.name;
 
+
   // слушатели like
   const buttonLike = cardElement.querySelector('.card__button-like');
   buttonLike.addEventListener('click', () => {
@@ -74,6 +76,20 @@ function rendorCard (card) {
   buttonTrash.addEventListener('click', () => {
     cardElement.remove();
   });
+
+  // popup img
+  const cardImg = cardElement.querySelector('.card__image');
+  const imageInPopup = popupWithImage.querySelector('.popup__image');
+  const figcaptionPopup = popupWithImage.querySelector('.popup__figcaption');
+  cardImg.addEventListener('click', handleClickImg);
+
+  function handleClickImg () {
+    openPopup(popupWithImage);
+    imageInPopup.src = card.link;
+    imageInPopup.alt = card.name;
+    figcaptionPopup.textContent = card.name;
+    console.log(imageInPopup)
+  }
 
   catalogCards.prepend(cardElement);
 };
@@ -120,6 +136,7 @@ function handleClickButtonAdd() {
   openPopup(popupAdd);
 }
 
+
 // слушатели кнопок на странице
 buttonEdit.addEventListener('click', handleClickButtonEdit);
 buttonAdd.addEventListener('click', handleClickButtonAdd);
@@ -135,6 +152,10 @@ crossPopupEdit.addEventListener('click', () => {
 crossPopupAdd.addEventListener('click', () => {
   closePopup(popupAdd);
 });
+crossPopupImg.addEventListener('click', () => {
+  closePopup(popupWithImage);
+});
 
-// слушатель корзины
+// // слушатель для img
+// popupImg.addEventListener('click', handleClickImg);
 
