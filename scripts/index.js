@@ -64,9 +64,8 @@ function rendorCard (card) {
   const buttonLike = cardElement.querySelector('.card__button-like');
   catalogCards.prepend(cardElement);
   buttonLike.addEventListener('click', () => {
-    buttonLike.classList.add('card__button-like_active');
+    buttonLike.classList.toggle('card__button-like_active');
   });
-
 };
 
 initialCards.forEach((initialCard) => rendorCard(initialCard));
