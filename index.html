@@ -33,8 +33,8 @@
         <button class="popup__close" type="button"></button>
         <form class="form-popup" name="edit">
           <h3 class="form-popup__title">Редактировать профиль</h3>
-          <input name="author-name" type="text" placeholder="Имя" class="form-popup__input form-popup__input_type_name">
-          <input name="author-about" type="text" placeholder="О себе" class="form-popup__input form-popup__input_type_profession">
+          <input required name="author-name" type="text" placeholder="Имя" class="form-popup__input form-popup__input_type_name">
+          <input required name="author-about" type="text" placeholder="О себе" class="form-popup__input form-popup__input_type_profession">
           <button type="submit" class="form-popup__button-save" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
@@ -44,8 +44,8 @@
         <button class="popup__close" type="button"></button>
         <form class="form-popup" name="edit">
           <h3 class="form-popup__title">Новое место</h3>
-          <input name="card-name" type="text" placeholder="Название" class="form-popup__input form-popup__input_type_name-card">
-          <input name="card-link" type="url" placeholder="Ссылка на картинку" class="form-popup__input form-popup__input_type_link-card">
+          <input required name="card-name" type="text" placeholder="Название" class="form-popup__input form-popup__input_type_name-card">
+          <input required name="card-link" type="url" placeholder="Ссылка на картинку" class="form-popup__input form-popup__input_type_link-card">
           <button type="submit" class="form-popup__button-save" aria-label="Создать">Создать</button>
         </form>
       </div>
