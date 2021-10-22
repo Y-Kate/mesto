@@ -4,6 +4,6 @@
   object-fit: fill;
 }
 
-.card__image {
+.card__image:hover {
   cursor: pointer;
 }
