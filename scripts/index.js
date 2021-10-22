@@ -56,7 +56,7 @@ const initialCards = [
 ];
 
 // функции для карточек
-function rendorCard (card) {
+function createCard (card) {
   const cardElement = formCard.querySelector('.card').cloneNode(true);
 
   // наполнение информацией
@@ -91,10 +91,14 @@ function rendorCard (card) {
     console.log(imageInPopup)
   }
 
-  catalogCards.prepend(cardElement);
+  rendorCard(cardElement);
 };
 
-initialCards.forEach((initialCard) => rendorCard(initialCard));
+function rendorCard(card) {
+  catalogCards.prepend(card);
+};
+
+initialCards.forEach((initialCard) => createCard(initialCard));
 
 // функции popup
 function closePopup (popup) {
@@ -119,7 +123,7 @@ function handleSubmitFormAdd (evt) {
     name: inputCardName.value,
     link: inputCardLink.value
   };
-  rendorCard(newCard);
+  createCard(newCard);
   closePopup(popupAdd);
   inputCardName.value = '';
   inputCardLink.value = '';
