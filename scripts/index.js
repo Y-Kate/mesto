@@ -58,10 +58,11 @@ const initialCards = [
 // функции для карточек
 function createCard (card) {
   const cardElement = formCard.querySelector('.card').cloneNode(true);
+  const cardImage = cardElement.querySelector('.card__image');
 
   // наполнение информацией
-  cardElement.querySelector('.card__image').src = card.link;
-  cardElement.querySelector('.card__image').alt = card.name;
+  cardImage.src = card.link;
+  cardImage.alt = card.name;
   cardElement.querySelector('.card__title').textContent = card.name;
 
 
@@ -78,10 +79,9 @@ function createCard (card) {
   });
 
   // popup img
-  const cardImg = cardElement.querySelector('.card__image');
   const imageInPopup = popupWithImage.querySelector('.popup__image');
   const figcaptionPopup = popupWithImage.querySelector('.popup__figcaption');
-  cardImg.addEventListener('click', handleClickImg);
+  cardImage.addEventListener('click', handleClickImg);
 
   function handleClickImg () {
     openPopup(popupWithImage);

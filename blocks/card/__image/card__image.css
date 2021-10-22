@@ -3,3 +3,7 @@
   height: 282px;
   object-fit: fill;
 }
+
+.card__image {
+  cursor: pointer;
+}
