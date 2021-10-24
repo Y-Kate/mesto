@@ -91,14 +91,17 @@ function createCard (card) {
     console.log(imageInPopup)
   }
 
-  rendorCard(cardElement);
+  return cardElement;
 };
 
 function rendorCard(card) {
   catalogCards.prepend(card);
 };
 
-initialCards.forEach((initialCard) => createCard(initialCard));
+initialCards.forEach((initialCard) => {
+  const newCard = createCard(initialCard);
+  rendorCard(newCard);
+});
 
 // функции popup
 function closePopup (popup) {
@@ -119,11 +122,12 @@ function handleSubmitFormEdit (evt) {
 
 function handleSubmitFormAdd (evt) {
   evt.preventDefault();
-  const newCard = {
+  const newDataCard = {
     name: inputCardName.value,
     link: inputCardLink.value
   };
-  createCard(newCard);
+  const newCard = createCard(newDataCard);
+  rendorCard(newCard);
   closePopup(popupAdd);
   inputCardName.value = '';
   inputCardLink.value = '';
@@ -159,7 +163,4 @@ crossPopupAdd.addEventListener('click', () => {
 crossPopupImg.addEventListener('click', () => {
   closePopup(popupWithImage);
 });
-
-// // слушатель для img
-// popupImg.addEventListener('click', handleClickImg);
 
