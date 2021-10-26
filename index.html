@@ -31,13 +31,14 @@
     <div class="popup popup_type_edit">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
-        <form class="form-popup" name="edit">
+        <form class="form-popup" name="edit" novalidate>
           <h3 class="form-popup__title">Редактировать профиль</h3>
           <input 
           required
           minlength="2"
           maxlength="40"
-          name="author-name" 
+          name="author-name"
+          id="author-name"  
           type="text" 
           placeholder="Имя" 
           class="form-popup__input form-popup__input_type_name">
@@ -46,19 +47,20 @@
           required 
           minlength="2"
           maxlength="200"
-          name="author-about" 
+          name="author-about"
+          id="author-about" 
           type="text" 
           placeholder="О себе"
           class="form-popup__input form-popup__input_type_profession">
           <span id="author-about-error" class="error"></span>
-          <button type="submit" class="form-popup__button-save form-popup__button-invalid" aria-label="Сохранить">Сохранить</button>
+          <button type="submit" class="form-popup__button-save" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
     </div>
     <div class="popup popup_type_add">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
-        <form class="form-popup" name="add">
+        <form class="form-popup" name="add" novalidate>
           <h3 class="form-popup__title">Новое место</h3>
           <input required name="card-name" type="text" placeholder="Название" class="form-popup__input form-popup__input_type_name-card">
           <input required name="card-link" type="url" placeholder="Ссылка на картинку" class="form-popup__input form-popup__input_type_link-card">

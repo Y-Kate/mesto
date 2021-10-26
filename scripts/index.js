@@ -144,6 +144,30 @@ function handleClickButtonAdd() {
   openPopup(popupAdd);
 }
 
+// функции 6 спринт 
+init();
+
+function init() {
+  const forms = Array.from(document.querySelectorAll('.form-popup'));
+  forms.forEach((form) => {
+    const inputs = Array.from(form.querySelectorAll('.form-popup__input'));
+
+    inputs.forEach((input)=>{
+      input.addEventListener('input', (evt) => {
+        const element = evt.target;
+        const ErrorContainer = document.querySelector(`#${element.id}-error`);
+        ErrorContainer.textContent = element.validationMessage;
+        console.log(element);
+        element.classList.toggle(
+          'form-popup__input_state_invalid', 
+          !element.validity.valid,
+        );
+      });
+    });
+  });
+};
+
+//функции 6 спринт 
 
 // слушатели кнопок на странице
 buttonEdit.addEventListener('click', handleClickButtonEdit);
@@ -163,4 +187,3 @@ crossPopupAdd.addEventListener('click', () => {
 crossPopupImg.addEventListener('click', () => {
   closePopup(popupWithImage);
 });
-
