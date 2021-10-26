@@ -5,3 +5,7 @@
   display: block;
   margin-bottom: 13px;
 }
+
+.error:last-of-type {
+  margin-bottom: 25px;
+}

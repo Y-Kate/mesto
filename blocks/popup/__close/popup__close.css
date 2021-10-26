@@ -12,7 +12,7 @@
 .popup__close:hover {
   cursor: pointer;
   opacity: 0.6;
-  transition: opacity 0.3s linear;
+  transition: opacity 0.2s linear;
 }
 
 @media (min-width: 620px) {
