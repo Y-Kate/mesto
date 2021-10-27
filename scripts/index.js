@@ -88,7 +88,7 @@ function createCard (card) {
     imageInPopup.src = card.link;
     imageInPopup.alt = card.name;
     figcaptionPopup.textContent = card.name;
-    console.log(imageInPopup)
+    // console.log(imageInPopup)
   }
 
   return cardElement;
@@ -145,17 +145,39 @@ function handleClickButtonAdd() {
 }
 
 // функции 6 спринт 
+// обработчики значений input 
 init();
 
 function init() {
   const forms = Array.from(document.querySelectorAll('.form-popup'));
   forms.forEach(addListenersToForm);
-};
+}
 
 function addListenersToForm(form) {
   const inputs = Array.from(form.querySelectorAll('.form-popup__input'));
-
   inputs.forEach(addlistenersToInput);
+  form.addEventListener('submit', handlerSubmit);
+  form.addEventListener('submit', setSubmitButtonState); //тут доб 
+}
+
+// обработчик активности кнопки popup
+// тут доб
+function setSubmitButtonState (form) {
+  console.log('setSubmitButtonState', evt.currentTarget);
+}
+
+function handlerSubmit(evt) {
+  evt.preventDefault();
+  const form = evt.target;
+  const data = Array.from(form.querySelectorAll('.form-popup__input')).reduce(
+    (sum, input) => ({
+      ...sum,
+      [input.name]: input.value,
+  }),
+  {},
+);
+
+  console.log(data);
 }
 
 function addlistenersToInput(input) {
@@ -164,6 +186,7 @@ function addlistenersToInput(input) {
 
 function handleFieldValidation(evt) {
   const element = evt.target;
+  element.setCustomValidity(''); // сброс описание текса ошибки
   const ErrorContainer = document.querySelector(`#${element.id}-error`);
   
   // if (element.validity.tooShort || element.validity.tooLong) {
@@ -176,6 +199,9 @@ function handleFieldValidation(evt) {
     !element.validity.valid,
   );
 }
+
+
+
 //функции 6 спринт 
 
 // слушатели кнопок на странице
