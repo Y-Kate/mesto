@@ -157,13 +157,23 @@ function addListenersToForm(form) {
   const inputs = Array.from(form.querySelectorAll('.form-popup__input'));
   inputs.forEach(addlistenersToInput);
   form.addEventListener('submit', handlerSubmit);
-  form.addEventListener('submit', setSubmitButtonState); //тут доб 
+  form.addEventListener('input', handlerFormInput);
+  setSubmitButtonState(form);
 }
 
 // обработчик активности кнопки popup
-// тут доб
-function setSubmitButtonState (form) {
-  console.log('setSubmitButtonState', evt.currentTarget);
+
+function handlerFormInput(evt) {
+  //const form = evt.currentTarget;
+  const { currentTarget: form } = evt;
+  setSubmitButtonState(form);
+}
+
+function setSubmitButtonState(form) {
+  const button = form.querySelector('.form-popup__button-save');
+  button.disabled = !form.checkValidity();
+  console.log(button);
+  button.classList.toggle('form-popup__button-invalid', !form.checkValidity());
 }
 
 function handlerSubmit(evt) {
