@@ -150,9 +150,9 @@ function handleClickButtonAdd() {
 
 // функции 6 спринт 
 // обработчики значений input 
-init();
+enableValidation();
 
-function init() {
+function enableValidation() {
   const forms = Array.from(document.querySelectorAll('.form-popup'));
   forms.forEach(addListenersToForm);
 }
@@ -168,15 +168,13 @@ function addListenersToForm(form) {
 // обработчик активности кнопки popup
 
 function handlerFormInput(evt) {
-  //const form = evt.currentTarget;
-  const { currentTarget: form } = evt;
+  const form = evt.currentTarget;
   setSubmitButtonState(form);
 }
 
 function setSubmitButtonState(form) {
   const button = form.querySelector('.form-popup__button-save');
   button.disabled = !form.checkValidity();
-  console.log(button);
   button.classList.toggle('form-popup__button-invalid', !form.checkValidity());
 }
 
@@ -231,5 +229,11 @@ popups.forEach((popup) => {
       closePopup(popup);
     }
   });
+})
+
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === "Escape") {
+    popups.forEach(closePopup)
+  }
 })
 
