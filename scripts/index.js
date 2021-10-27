@@ -6,7 +6,7 @@ const buttonAdd = document.querySelector('.profile__button-add');
 const profileNameElement = document.querySelector('.profile__name');
 const profileDescriptionElement  = document.querySelector('.profile__description');
 
-// Все попапы
+// все попапы
 
 const popups = Array.from(document.querySelectorAll('.popup'));
 
@@ -153,8 +153,6 @@ function checkClosePopup(evt) {
   return evt.target.classList.contains('popup__close') || evt.target === evt.currentTarget || evt.key === "Escape";
 }
 
-//функции 6 спринт 
-
 // слушатели кнопок на странице
 buttonEdit.addEventListener('click', handleClickButtonEdit);
 buttonAdd.addEventListener('click', handleClickButtonAdd);
@@ -177,4 +175,3 @@ document.addEventListener('keydown', (evt) => {
     popups.forEach(closePopup)
   }
 })
-

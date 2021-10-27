@@ -1,6 +1,3 @@
-// функции 6 спринт 
-// обработчики значений input 
-
 const dataClasses = {
   formSelector: '.form-popup',
   inputSelector: '.form-popup__input',
@@ -10,6 +7,8 @@ const dataClasses = {
 }
 
 enableValidation(dataClasses);
+
+// обработчики значений input 
 
 function enableValidation(dataClasses) {
   const forms = Array.from(document.querySelectorAll(dataClasses.formSelector));

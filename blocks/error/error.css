@@ -4,8 +4,9 @@
   line-height: 15px;
   display: block;
   margin-bottom: 13px;
+  font-weight: 400;
 }
 
 .error:last-of-type {
-  margin-bottom: 25px;
+  margin-bottom: 33px;
 }
