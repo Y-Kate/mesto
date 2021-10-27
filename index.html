@@ -62,8 +62,24 @@
         <button class="popup__close" type="button"></button>
         <form class="form-popup" name="add" novalidate>
           <h3 class="form-popup__title">Новое место</h3>
-          <input required name="card-name" type="text" placeholder="Название" class="form-popup__input form-popup__input_type_name-card">
-          <input required name="card-link" type="url" placeholder="Ссылка на картинку" class="form-popup__input form-popup__input_type_link-card">
+          <input 
+          required
+          minlength="2"
+          maxlength="30"
+          name="card-name"
+          id="card-name" 
+          type="text" 
+          placeholder="Название" 
+          class="form-popup__input form-popup__input_type_name-card">
+          <span id="card-name-error" class="error"></span>
+          <input 
+          required
+          name="card-link"
+          id="card-link"
+          type="url" 
+          placeholder="Ссылка на картинку" 
+          class="form-popup__input form-popup__input_type_link-card">
+          <span id="card-link-error" class="error"></span>
           <button type="submit" class="form-popup__button-save" aria-label="Создать">Создать</button>
         </form>
       </div>
