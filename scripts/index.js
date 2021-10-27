@@ -108,23 +108,23 @@ initialCards.forEach((initialCard) => {
 });
 
 // функции popup
-function closePopup (popup) {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-function openPopup (popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
 // обработчики форм
-function handleSubmitFormEdit (evt) {
+function handleSubmitFormEdit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   profileNameElement.textContent = inputName.value;
   profileDescriptionElement.textContent = inputAbout.value;
   closePopup(popupEdit);
 }
 
-function handleSubmitFormAdd (evt) {
+function handleSubmitFormAdd(evt) {
   evt.preventDefault();
   const newDataCard = {
     name: inputCardName.value,
@@ -148,68 +148,9 @@ function handleClickButtonAdd() {
   openPopup(popupAdd);
 }
 
-// функции 6 спринт 
-// обработчики значений input 
-enableValidation();
-
-function enableValidation() {
-  const forms = Array.from(document.querySelectorAll('.form-popup'));
-  forms.forEach(addListenersToForm);
-}
-
-function addListenersToForm(form) {
-  const inputs = Array.from(form.querySelectorAll('.form-popup__input'));
-  inputs.forEach(addlistenersToInput);
-  form.addEventListener('submit', handlerSubmit);
-  form.addEventListener('input', handlerFormInput);
-  setSubmitButtonState(form);
-}
-
-// обработчик активности кнопки popup
-
-function handlerFormInput(evt) {
-  const form = evt.currentTarget;
-  setSubmitButtonState(form);
-}
-
-function setSubmitButtonState(form) {
-  const button = form.querySelector('.form-popup__button-save');
-  button.disabled = !form.checkValidity();
-  button.classList.toggle('form-popup__button-invalid', !form.checkValidity());
-}
-
-function handlerSubmit(evt) {
-  evt.preventDefault();
-  const form = evt.target;
-  const data = Array.from(form.querySelectorAll('.form-popup__input')).reduce(
-    (sum, input) => ({
-      ...sum,
-      [input.name]: input.value,
-  }),
-  {},
-);
-
-  console.log(data);
-}
-
-function addlistenersToInput(input) {
-  input.addEventListener('input', handleFieldValidation);
-}
-
-function handleFieldValidation(evt) {
-  const element = evt.target;
-  element.setCustomValidity(''); // сброс описание текса ошибки
-  const ErrorContainer = document.querySelector(`#${element.id}-error`);
-  
-  // if (element.validity.tooShort || element.validity.tooLong) {
-  //     element.setCustomValidity('в поле «Имя» должно быть от 2 до 40 символов')
-  // };
-  
-  ErrorContainer.textContent = element.validationMessage;
-  element.classList.toggle(
-    'form-popup__input_state_invalid', 
-    !element.validity.valid,
-  );
+// проверка закрывать попап или нет
+function checkClosePopup(evt) {
+  return evt.target.classList.contains('popup__close') || evt.target === evt.currentTarget || evt.key === "Escape";
 }
 
 //функции 6 спринт 
@@ -225,14 +166,14 @@ formCardAdd.addEventListener('submit', handleSubmitFormAdd);
 // закрытие попапов
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup__close') || evt.target === evt.currentTarget) {
+    if (checkClosePopup(evt)) {
       closePopup(popup);
     }
   });
-})
+});
 
 document.addEventListener('keydown', (evt) => {
-  if (evt.key === "Escape") {
+  if (checkClosePopup(evt)) {
     popups.forEach(closePopup)
   }
 })
