@@ -6,6 +6,10 @@ const buttonAdd = document.querySelector('.profile__button-add');
 const profileNameElement = document.querySelector('.profile__name');
 const profileDescriptionElement  = document.querySelector('.profile__description');
 
+// Все попапы
+
+const popups = Array.from(document.querySelectorAll('.popup'));
+
 // popup редактирования профиля
 const popupEdit = document.querySelector('.popup_type_edit');
 const crossPopupEdit = popupEdit.querySelector('.popup__close');
@@ -210,8 +214,6 @@ function handleFieldValidation(evt) {
   );
 }
 
-
-
 //функции 6 спринт 
 
 // слушатели кнопок на странице
@@ -222,13 +224,12 @@ buttonAdd.addEventListener('click', handleClickButtonAdd);
 formProfileEdit.addEventListener('submit', handleSubmitFormEdit);
 formCardAdd.addEventListener('submit', handleSubmitFormAdd);
 
-// слушатели cross
-crossPopupEdit.addEventListener('click', () => {
-  closePopup(popupEdit);
-});
-crossPopupAdd.addEventListener('click', () => {
-  closePopup(popupAdd);
-});
-crossPopupImg.addEventListener('click', () => {
-  closePopup(popupWithImage);
-});
+// закрытие попапов
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup__close') || evt.target === evt.currentTarget) {
+      closePopup(popup);
+    }
+  });
+})
+
