@@ -18,14 +18,26 @@ function enableValidation(dataClasses) {
 function setEventListeners(form, dataClasses) {
   const inputs = Array.from(form.querySelectorAll(dataClasses.inputSelector));
   inputs.forEach((input) => addlistenersToInput(input, dataClasses));
-  form.addEventListener('input', (evt) => setSubmitButtonState(evt.currentTarget, dataClasses));
-  setSubmitButtonState(form, dataClasses);
+  form.addEventListener('input', (evt) => setSubmitButtonState(evt.currentTarget, dataClasses, inputs));
+  setSubmitButtonState(form, dataClasses, inputs);
 }
 
-function setSubmitButtonState(form, dataClasses) {
+function setSubmitButtonState(form, dataClasses, inputs) {
   const button = form.querySelector(dataClasses.submitButtonSelector);
-  button.disabled = !form.checkValidity();
-  button.classList.toggle(dataClasses.inactiveButtonClass, !form.checkValidity());
+
+  function hasInvalidInput(inputList) {
+    return inputList.some((inputElement) => {
+      return !inputElement.validity.valid;
+    })
+  }
+
+  if (hasInvalidInput(inputs)) {
+    button.disabled = true;
+    button.classList.add(dataClasses.inactiveButtonClass);
+  } else {
+    button.disabled = false;
+    button.classList.remove(dataClasses.inactiveButtonClass);
+  }
 }
 
 function addlistenersToInput(input, dataClasses) {
