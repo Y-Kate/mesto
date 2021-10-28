@@ -5,8 +5,15 @@
   display: block;
   margin-bottom: 13px;
   font-weight: 400;
+  max-width: 238px;
 }
 
 .error:last-of-type {
   margin-bottom: 33px;
+}
+
+@media (min-width: 620px) {
+  .error {
+    max-width: 358px;
+  }
 }
