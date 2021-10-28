@@ -12,21 +12,13 @@ enableValidation(dataClasses);
 
 function enableValidation(dataClasses) {
   const forms = Array.from(document.querySelectorAll(dataClasses.formSelector));
-  forms.forEach((form) => addListenersToForm(form, dataClasses));
+  forms.forEach((form) => setEventListeners(form, dataClasses));
 }
 
-function addListenersToForm(form, dataClasses) {
+function setEventListeners(form, dataClasses) {
   const inputs = Array.from(form.querySelectorAll(dataClasses.inputSelector));
   inputs.forEach((input) => addlistenersToInput(input, dataClasses));
-  form.addEventListener('submit', (evt) => handlerSubmit(evt, dataClasses));
-  form.addEventListener('input', (evt) => handlerFormInput(evt, dataClasses));
-  setSubmitButtonState(form, dataClasses);
-}
-
-// обработчик активности кнопки popup
-
-function handlerFormInput(evt, dataClasses) {
-  const form = evt.currentTarget;
+  form.addEventListener('input', (evt) => setSubmitButtonState(evt.currentTarget, dataClasses));
   setSubmitButtonState(form, dataClasses);
 }
 
@@ -36,29 +28,14 @@ function setSubmitButtonState(form, dataClasses) {
   button.classList.toggle(dataClasses.inactiveButtonClass, !form.checkValidity());
 }
 
-function handlerSubmit(evt, dataClasses) {
-  evt.preventDefault();
-  const form = evt.target;
-  const data = Array.from(form.querySelectorAll(dataClasses.inputSelector)).reduce(
-    (sum, input) => ({
-      ...sum,
-      [input.name]: input.value,
-  }),
-  {},
-);
-
-  console.log(data);
-}
-
 function addlistenersToInput(input, dataClasses) {
   input.addEventListener('input', (evt) => handleFieldValidation(evt, dataClasses));
 }
 
 function handleFieldValidation(evt, dataClasses) {
   const element = evt.target;
-  element.setCustomValidity(''); // сброс описание текса ошибки
-  const ErrorContainer = document.querySelector(`#${element.id}-error`);
-  ErrorContainer.textContent = element.validationMessage;
+  const errorContainer = document.querySelector(`#${element.id}-error`);
+  errorContainer.textContent = element.validationMessage;
   element.classList.toggle(
     dataClasses.inputErrorClass, 
     !element.validity.valid,
