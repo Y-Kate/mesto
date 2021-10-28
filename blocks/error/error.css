@@ -6,10 +6,11 @@
   margin-bottom: 13px;
   font-weight: 400;
   max-width: 238px;
+  min-height: 30px;
 }
 
 .error:last-of-type {
-  margin-bottom: 33px;
+  margin-bottom: 18px;
 }
 
 @media (min-width: 620px) {
