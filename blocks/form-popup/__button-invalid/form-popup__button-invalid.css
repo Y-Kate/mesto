@@ -4,3 +4,8 @@
   background: #fff;
   color: #000;
 }
+
+.form-popup__button-invalid:hover {
+  cursor: default;
+  opacity: 0.2;
+}
