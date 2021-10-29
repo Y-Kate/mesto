@@ -121,8 +121,6 @@ function handleSubmitFormAdd(evt) {
   renderCard(newCard);
   closePopup(popupAdd);
   formCardAdd.reset();
-  // buttonSubmitAddCard.classList.add('form-popup__button-invalid');
-  // buttonSubmitAddCard.disabled = true;
   toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
 }
 

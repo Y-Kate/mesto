@@ -12,29 +12,35 @@ enableValidation(dataClasses);
 
 function enableValidation(dataClasses) {
   const forms = Array.from(document.querySelectorAll(dataClasses.formSelector));
-  forms.forEach((form) => setEventListeners(form, dataClasses));
+  forms.forEach((form) => {
+    form.addEventListener('submit', (evt) => {
+      evt.preventDefault() // зачем нужна повторная отмена стандартной отправки формы? Мы ведь в обработчиках submit на 102 и 109 строчках в index.js их уже отменяем
+    });
+    setEventListeners(form, dataClasses);
+  });
 }
 
 function setEventListeners(form, dataClasses) {
   const inputs = Array.from(form.querySelectorAll(dataClasses.inputSelector));
+  const buttonSubmit = form.querySelector(dataClasses.submitButtonSelector);
+
   inputs.forEach((input) => addlistenersToInput(input, dataClasses));
-  form.addEventListener('input', (evt) => setSubmitButtonState(evt.currentTarget, dataClasses, inputs));
-  setSubmitButtonState(form, dataClasses, inputs);
+  form.addEventListener('input', (evt) => setSubmitButtonState(evt.currentTarget, dataClasses, inputs, buttonSubmit));
+  setSubmitButtonState(form, dataClasses, inputs, buttonSubmit);
 }
 
-function setSubmitButtonState(form, dataClasses, inputs) {
-  const button = form.querySelector(dataClasses.submitButtonSelector);
+function hasInvalidInput(inputList) {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  })
+}
 
-  function hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
-      return !inputElement.validity.valid;
-    })
-  }
+function setSubmitButtonState(form, dataClasses, inputs, buttonSubmit) {
 
-    if (hasInvalidInput(inputs)) {
-    toggleActivateButtonSubmit(button, dataClasses, true);
+  if (hasInvalidInput(inputs)) {
+    toggleActivateButtonSubmit(buttonSubmit, dataClasses, true);
   } else {
-    toggleActivateButtonSubmit(button, dataClasses, false);
+    toggleActivateButtonSubmit(buttonSubmit, dataClasses, false);
   }
 }
 
