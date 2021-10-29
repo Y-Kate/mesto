@@ -31,13 +31,16 @@ function setSubmitButtonState(form, dataClasses, inputs) {
     })
   }
 
-  if (hasInvalidInput(inputs)) {
-    button.disabled = true;
-    button.classList.add(dataClasses.inactiveButtonClass);
+    if (hasInvalidInput(inputs)) {
+    toggleActivateButtonSubmit(button, dataClasses, true);
   } else {
-    button.disabled = false;
-    button.classList.remove(dataClasses.inactiveButtonClass);
+    toggleActivateButtonSubmit(button, dataClasses, false);
   }
+}
+
+function toggleActivateButtonSubmit(buttonSubmit, dataClasses, isActivate) {
+  buttonSubmit.disabled = isActivate;
+  buttonSubmit.classList.toggle(dataClasses.inactiveButtonClass, isActivate);
 }
 
 function addlistenersToInput(input, dataClasses) {

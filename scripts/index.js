@@ -111,12 +111,19 @@ function handleSubmitFormAdd(evt) {
     name: inputCardName.value,
     link: inputCardLink.value
   };
+
+  const inputsArray = [
+    inputCardName,
+    inputCardLink
+  ]
+
   const newCard = createCard(newDataCard);
   renderCard(newCard);
   closePopup(popupAdd);
   formCardAdd.reset();
-  buttonSubmitAddCard.classList.add('form-popup__button-invalid');
-  buttonSubmitAddCard.disabled = true;
+  // buttonSubmitAddCard.classList.add('form-popup__button-invalid');
+  // buttonSubmitAddCard.disabled = true;
+  toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
 }
 
 // обработчики слушателей кнопок
