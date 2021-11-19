@@ -1,4 +1,5 @@
 import FormValidator from './FormValidator.js';
+import { initialCards } from './initial-сards.js';
 
 // кнопки на странице
 const buttonEdit = document.querySelector('.profile__modify');
@@ -47,20 +48,20 @@ const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit)
 const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
 
 formEditProfileValidator.setEventListeners();
-formEditProfileValidator.setEventListeners();
+formAddCardValidator.setEventListeners();
 
 
-function enableValidation(dataClasses) {
-  const forms = Array.from(document.querySelectorAll(dataClasses.formSelector));
-  forms.forEach((form) => {
-    form.addEventListener('submit', (evt) => {
-      evt.preventDefault() // зачем нужна повторная отмена стандартной отправки формы? Мы ведь в обработчиках submit на 102 и 109 строчках в index.js их уже отменяем
-    });
-    setEventListeners(form, dataClasses);
-  });
-}
+// function enableValidation(dataClasses) {
+//   const forms = Array.from(document.querySelectorAll(dataClasses.formSelector));
+//   forms.forEach((form) => {
+//     form.addEventListener('submit', (evt) => {
+//       evt.preventDefault() // зачем нужна повторная отмена стандартной отправки формы? Мы ведь в обработчиках submit на 102 и 109 строчках в index.js их уже отменяем
+//     });
+//     setEventListeners(form, dataClasses);
+//   });
+// }
 
-enableValidation(dataClasses);
+// enableValidation(dataClasses);
 
 
 
@@ -80,10 +81,10 @@ function handleClickImg () {
   figcaptionPopup.textContent = card.name;
 }
 
-initialCards.forEach((initialCard) => {
-  const newCard = createCard(initialCard);
-  renderCard(newCard);
-});
+// initialCards.forEach((initialCard) => {
+//   const newCard = createCard(initialCard);
+//   renderCard(newCard);
+// });
 
 function keyHandler(evt) {
   if (checkClosePopup(evt)) {
@@ -111,24 +112,24 @@ function handleSubmitFormEdit(evt) {
   closePopup(popupEdit);
 }
 
-function handleSubmitFormAdd(evt) {
-  evt.preventDefault();
-  const newDataCard = {
-    name: inputCardName.value,
-    link: inputCardLink.value
-  };
+// function handleSubmitFormAdd(evt) {
+//   evt.preventDefault();
+//   const newDataCard = {
+//     name: inputCardName.value,
+//     link: inputCardLink.value
+//   };
 
-  const inputsArray = [
-    inputCardName,
-    inputCardLink
-  ]
+//   const inputsArray = [
+//     inputCardName,
+//     inputCardLink
+//   ]
 
-  const newCard = createCard(newDataCard);
-  renderCard(newCard);
-  closePopup(popupAdd);
-  formCardAdd.reset();
-  toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
-}
+//   const newCard = createCard(newDataCard);
+//   renderCard(newCard);
+//   closePopup(popupAdd);
+//   formCardAdd.reset();
+//   toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
+// }
 
 // обработчики слушателей кнопок
 function handleClickButtonEdit() {
@@ -152,7 +153,7 @@ buttonAdd.addEventListener('click', handleClickButtonAdd);
 
 // слушатели форм
 formProfileEdit.addEventListener('submit', handleSubmitFormEdit);
-formCardAdd.addEventListener('submit', handleSubmitFormAdd);
+// formCardAdd.addEventListener('submit', handleSubmitFormAdd);
 
 // закрытие попапов
 popups.forEach((popup) => {

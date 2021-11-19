@@ -1,34 +1,24 @@
 class FormValidator {
-  constructor(dataClasses, formElement) {
-    this.dataClasses = dataClasses;
+  constructor(dataForm, formElement) {
+    this.dataClasses = dataForm;
     this.formElement = formElement;
-    this.inputs = Array.from(this.formElement.querySelectorAll(this.dataClasses.inputSelector));
-    this.buttonSubmit = this.formElement.querySelector(this.dataClasses.submitButtonSelector);
+    this.inputs = Array.from(formElement.querySelectorAll(dataForm.inputSelector));
+    this.buttonSubmit = formElement.querySelector(dataForm.submitButtonSelector);
 
   }
-
-  // const dataClasses = {
-  //   formSelector: '.form-popup',
-  //   inputSelector: '.form-popup__input',
-  //   submitButtonSelector: '.form-popup__button-save',
-  //   inactiveButtonClass: 'form-popup__button-invalid',
-  //   inputErrorClass: 'form-popup__input_state_invalid',
-  // }
-
 
   // обработчики значений input
-
-  setEventListeners() {
-    this.inputs.forEach((input) => addListenersToInput(input));
-    this.formElement.addEventListener('input', () => setSubmitButtonState());
-    setSubmitButtonState();
+  setEventListeners = () => {
+    this.inputs.forEach((input) => this.addListenersToInput(input));
+    this.formElement.addEventListener('input', () => this.setSubmitButtonState());
+    this.setSubmitButtonState();
   }
 
-  addListenersToInput(input) {
-    input.addEventListener('input', handleFieldValidation);
+  addListenersToInput = (input) => {
+    input.addEventListener('input', this.handleFieldValidation);
   }
-
-  handleFieldValidation(evt) {
+  
+  handleFieldValidation = (evt) => {
     const inputElement = evt.target;
     const spanErrorElement = document.querySelector(`#${inputElement.id}-error`);
     spanErrorElement.textContent = inputElement.validationMessage;
@@ -38,21 +28,21 @@ class FormValidator {
     )
   }
 
-  setSubmitButtonState() {
-    if (hasInvalidInput()) {
-      toggleActivateButtonSubmit(true);
+  setSubmitButtonState = () => {
+    if (this.hasInvalidInput()) {
+      this.toggleActivateButtonSubmit(true);
     } else {
-      toggleActivateButtonSubmit(false);
+      this.toggleActivateButtonSubmit(false);
     }
   }
 
-  toggleActivateButtonSubmit(isActivate) {
+  toggleActivateButtonSubmit = (isActivate) => {
     this.buttonSubmit.disabled = isActivate;
     this.buttonSubmit.classList.toggle(this.dataClasses.inactiveButtonClass, isActivate);
   }
 
   // проверка всех инпутов формы
-  hasInvalidInput() {
+  hasInvalidInput = () => {
     return this.inputs.some((inputElement) => {
       return !inputElement.validity.valid;
     })
