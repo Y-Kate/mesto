@@ -123,35 +123,24 @@ initialCards.forEach((initialCard) => {
 });
 
 
-// function handleSubmitFormAdd(evt) {
-//   evt.preventDefault();
-//   const newDataCard = {
-//     name: inputCardName.value,
-//     link: inputCardLink.value
-//   };
-
 function handleSubmitFormAdd(evt) {
   evt.preventDefault();
+
+  const newDataCard = {
+    name: inputCardName.value,
+    link: inputCardLink.value
+  };
   
- const inputsArray = [
-    inputCardName,
-    inputCardLink
-];
+  // const inputsArray = [ // TODO ненужно?
+  //   inputCardName,
+  //   inputCardLink
+  // ];
+
   const newCard = renderCard(newCard);
   
   closePopup(popupAdd);
   formCardAdd.reset();
-
-
-  // toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
   
-  // const newDataCard = {
-  //   name: inputCardName.value,
-  //   link: inputCardLink.value
-  // };
-
- 
-
   // const newCard = createCard(newDataCard);
   // renderCard(newCard);
   // closePopup(popupAdd);
