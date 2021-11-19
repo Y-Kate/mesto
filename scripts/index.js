@@ -131,21 +131,19 @@ function handleSubmitFormAdd(evt) {
     link: inputCardLink.value
   };
   
+  const prototypeCardTwo = new Card(newDataCard, templateCardSelector);
+  const newCard = prototypeCardTwo.createCard();
+  renderCard(newCard);
   // const inputsArray = [ // TODO ненужно?
   //   inputCardName,
   //   inputCardLink
   // ];
 
-  const newCard = renderCard(newCard);
-  
-  closePopup(popupAdd);
-  formCardAdd.reset();
-  
   // const newCard = createCard(newDataCard);
   // renderCard(newCard);
-  // closePopup(popupAdd);
-  // formCardAdd.reset();
-  // toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
+    closePopup(popupAdd);
+    formCardAdd.reset();
+    formAddCardValidator.toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
 
 }
 /////////////////

@@ -30,13 +30,13 @@ class FormValidator {
 
   _setSubmitButtonState = () => {
     if (this._hasInvalidInput()) {
-      this._toggleActivateButtonSubmit(true);
+      this.toggleActivateButtonSubmit(true);
     } else {
-      this._toggleActivateButtonSubmit(false);
+      this.toggleActivateButtonSubmit(false);
     }
   }
 
-  _toggleActivateButtonSubmit = (isActivate) => {
+  toggleActivateButtonSubmit = (isActivate) => {
     this.buttonSubmit.disabled = isActivate;
     this.buttonSubmit.classList.toggle(this.dataClasses.inactiveButtonClass, isActivate);
   }
