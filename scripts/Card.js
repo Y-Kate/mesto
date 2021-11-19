@@ -34,9 +34,7 @@ class Card {
   };
  
   createCard = () => {
-    console.log('1', this.cardElement);
     this._packCard();
-    console.log('2', this.cardElement);
     return this.cardElement
   }
 
