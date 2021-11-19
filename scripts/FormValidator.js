@@ -9,16 +9,16 @@ class FormValidator {
 
   // обработчики значений input
   setEventListeners = () => {
-    this.inputs.forEach((input) => this.addListenersToInput(input));
-    this.formElement.addEventListener('input', () => this.setSubmitButtonState());
-    this.setSubmitButtonState();
+    this.inputs.forEach((input) => this._addListenersToInput(input));
+    this.formElement.addEventListener('input', () => this._setSubmitButtonState());
+    this._setSubmitButtonState();
   }
 
-  addListenersToInput = (input) => {
-    input.addEventListener('input', this.handleFieldValidation);
+  _addListenersToInput = (input) => {
+    input.addEventListener('input', this._handleFieldValidation);
   }
   
-  handleFieldValidation = (evt) => {
+  _handleFieldValidation = (evt) => {
     const inputElement = evt.target;
     const spanErrorElement = document.querySelector(`#${inputElement.id}-error`);
     spanErrorElement.textContent = inputElement.validationMessage;
@@ -28,21 +28,21 @@ class FormValidator {
     )
   }
 
-  setSubmitButtonState = () => {
-    if (this.hasInvalidInput()) {
-      this.toggleActivateButtonSubmit(true);
+  _setSubmitButtonState = () => {
+    if (this._hasInvalidInput()) {
+      this._toggleActivateButtonSubmit(true);
     } else {
-      this.toggleActivateButtonSubmit(false);
+      this._toggleActivateButtonSubmit(false);
     }
   }
 
-  toggleActivateButtonSubmit = (isActivate) => {
+  _toggleActivateButtonSubmit = (isActivate) => {
     this.buttonSubmit.disabled = isActivate;
     this.buttonSubmit.classList.toggle(this.dataClasses.inactiveButtonClass, isActivate);
   }
 
   // проверка всех инпутов формы
-  hasInvalidInput = () => {
+  _hasInvalidInput = () => {
     return this.inputs.some((inputElement) => {
       return !inputElement.validity.valid;
     })
