@@ -1,23 +1,25 @@
-const dataClasses = {
-  formSelector: '.form-popup',
-  inputSelector: '.form-popup__input',
-  submitButtonSelector: '.form-popup__button-save',
-  inactiveButtonClass: 'form-popup__button-invalid',
-  inputErrorClass: 'form-popup__input_state_invalid',
-}
-// обработчики значений input
+// import FormValidator from './FormValidator';
 
-function enableValidation(dataClasses) {
-  const forms = Array.from(document.querySelectorAll(dataClasses.formSelector));
-  forms.forEach((form) => {
-    form.addEventListener('submit', (evt) => {
-      evt.preventDefault() // зачем нужна повторная отмена стандартной отправки формы? Мы ведь в обработчиках submit на 102 и 109 строчках в index.js их уже отменяем
-    });
-    setEventListeners(form, dataClasses);
-  });
-}
+// const dataClasses = {
+//   formSelector: '.form-popup',
+//   inputSelector: '.form-popup__input',
+//   submitButtonSelector: '.form-popup__button-save',
+//   inactiveButtonClass: 'form-popup__button-invalid',
+//   inputErrorClass: 'form-popup__input_state_invalid',
+// }
+// // обработчики значений input
 
-enableValidation(dataClasses);
+// function enableValidation(dataClasses) {
+//   const forms = Array.from(document.querySelectorAll(dataClasses.formSelector));
+//   forms.forEach((form) => {
+//     form.addEventListener('submit', (evt) => {
+//       evt.preventDefault() // зачем нужна повторная отмена стандартной отправки формы? Мы ведь в обработчиках submit на 102 и 109 строчках в index.js их уже отменяем
+//     });
+//     setEventListeners(form, dataClasses);
+//   });
+// }
+
+// enableValidation(dataClasses);
 
 // function setEventListeners(form, dataClasses) {
 //   const inputs = Array.from(form.querySelectorAll(dataClasses.inputSelector));

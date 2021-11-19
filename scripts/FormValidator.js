@@ -24,11 +24,18 @@ class FormValidator {
     setSubmitButtonState();
   }
 
-  // проверка всех инпутов формы
-  hasInvalidInput() {
-    return this.inputs.some((inputElement) => {
-      return !inputElement.validity.valid;
-    })
+  addListenersToInput(input) {
+    input.addEventListener('input', handleFieldValidation);
+  }
+
+  handleFieldValidation(evt) {
+    const inputElement = evt.target;
+    const spanErrorElement = document.querySelector(`#${inputElement.id}-error`);
+    spanErrorElement.textContent = inputElement.validationMessage;
+    inputElement.classList.toggle(
+      this.dataClasses.inputErrorClass,
+      !inputElement.validity.valid,
+    )
   }
 
   setSubmitButtonState() {
@@ -44,17 +51,12 @@ class FormValidator {
     this.buttonSubmit.classList.toggle(this.dataClasses.inactiveButtonClass, isActivate);
   }
 
-  addListenersToInput(input) {
-    input.addEventListener('input', handleFieldValidation);
-  }
-
-  handleFieldValidation(evt) {
-    this.inputElement = evt.target;
-    this.spanErrorElement = document.querySelector(`#${this.inputElement.id}-error`);
-    this.spanErrorElement.textContent = this.inputElement.validationMessage;
-    this.inputElement.classList.toggle(
-      this.dataClasses.inputErrorClass,
-      !inputElement.validity.valid,
-    )
+  // проверка всех инпутов формы
+  hasInvalidInput() {
+    return this.inputs.some((inputElement) => {
+      return !inputElement.validity.valid;
+    })
   }
 }
+
+export default FormValidator;

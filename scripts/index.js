@@ -1,3 +1,5 @@
+import FormValidator from './FormValidator.js';
+
 // кнопки на странице
 const buttonEdit = document.querySelector('.profile__modify');
 const buttonAdd = document.querySelector('.profile__button-add');
@@ -32,6 +34,39 @@ const catalogCards = document.querySelector('.catalog');
 ////////////////////////////////////////// для классов
 const templateCardSelector = '#templateCard';
 
+const dataClasses = {
+  formSelector: '.form-popup',
+  inputSelector: '.form-popup__input',
+  submitButtonSelector: '.form-popup__button-save',
+  inactiveButtonClass: 'form-popup__button-invalid',
+  inputErrorClass: 'form-popup__input_state_invalid',
+}
+// обработчики значений input
+
+const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit);
+const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
+
+formEditProfileValidator.setEventListeners();
+formEditProfileValidator.setEventListeners();
+
+
+function enableValidation(dataClasses) {
+  const forms = Array.from(document.querySelectorAll(dataClasses.formSelector));
+  forms.forEach((form) => {
+    form.addEventListener('submit', (evt) => {
+      evt.preventDefault() // зачем нужна повторная отмена стандартной отправки формы? Мы ведь в обработчиках submit на 102 и 109 строчках в index.js их уже отменяем
+    });
+    setEventListeners(form, dataClasses);
+  });
+}
+
+enableValidation(dataClasses);
+
+
+
+
+
+//////////////////////////////////////////////////////////
 
 // popup img
 const imageInPopup = popupWithImage.querySelector('.popup__image');
