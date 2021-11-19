@@ -27,52 +27,23 @@ const buttonSubmitAddCard = formCardAdd.querySelector('.form-popup__button-save'
 const popupWithImage = document.querySelector('.popup_type_img');
 
 // карточки
-const formCard = document.querySelector('#templateCard').content;
 const catalogCards = document.querySelector('.catalog');
 
+////////////////////////////////////////// для классов
+const templateCardSelector = '#templateCard';
 
 
-// функции для карточек
-function createCard (card) {
-  const cardElement = formCard.querySelector('.card').cloneNode(true);
-  const cardImage = cardElement.querySelector('.card__image');
+// popup img
+const imageInPopup = popupWithImage.querySelector('.popup__image');
+const figcaptionPopup = popupWithImage.querySelector('.popup__figcaption');
 
-  // наполнение информацией
-  cardImage.src = card.link;
-  cardImage.alt = card.name;
-  cardElement.querySelector('.card__title').textContent = card.name;
-
-
-  // слушатели like
-  const buttonLike = cardElement.querySelector('.card__button-like');
-  buttonLike.addEventListener('click', () => {
-    buttonLike.classList.toggle('card__button-like_active');
-  });
-
-  // слушатели trash
-  const buttonTrash = cardElement.querySelector('.card__button-trash');
-  buttonTrash.addEventListener('click', () => {
-    cardElement.remove();
-  });
-
-  // popup img
-  const imageInPopup = popupWithImage.querySelector('.popup__image');
-  const figcaptionPopup = popupWithImage.querySelector('.popup__figcaption');
-  cardImage.addEventListener('click', handleClickImg);
-
-  function handleClickImg () {
-    openPopup(popupWithImage);
-    imageInPopup.src = card.link;
-    imageInPopup.alt = card.name;
-    figcaptionPopup.textContent = card.name;
-  }
-
-  return cardElement;
-};
-
-function renderCard(card) {
-  catalogCards.prepend(card);
-};
+// функция popup Img
+function handleClickImg () {
+  openPopup(popupWithImage);
+  imageInPopup.src = card.link;
+  imageInPopup.alt = card.name;
+  figcaptionPopup.textContent = card.name;
+}
 
 initialCards.forEach((initialCard) => {
   const newCard = createCard(initialCard);
