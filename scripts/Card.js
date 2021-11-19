@@ -10,7 +10,7 @@ class Card {
     this.newCardName = cardData.name;
   }
 
-  createCard = () => {
+  _packCard = () => {
     // наполнение информацией
     this.cardImage.src = this.newCardLink;
     this.cardImage.alt = this.newCardName;
@@ -31,8 +31,15 @@ class Card {
 
     // this.cardImage.addEventListener('click', handleClickImg); //разобраться с обработчиком
 
-    return this.cardElement;
   };
+ 
+  createCard = () => {
+    console.log('1', this.cardElement);
+    this._packCard();
+    console.log('2', this.cardElement);
+    return this.cardElement
+  }
+
 }
 
 export default Card;
