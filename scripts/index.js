@@ -1,5 +1,6 @@
 import FormValidator from './FormValidator.js';
 import { initialCards } from './initial-сards.js';
+import Card from './Card.js';
 
 // кнопки на странице
 const buttonEdit = document.querySelector('.profile__modify');
@@ -74,17 +75,15 @@ const imageInPopup = popupWithImage.querySelector('.popup__image');
 const figcaptionPopup = popupWithImage.querySelector('.popup__figcaption');
 
 // функция popup Img
-function handleClickImg () {
-  openPopup(popupWithImage);
-  imageInPopup.src = card.link;
-  imageInPopup.alt = card.name;
-  figcaptionPopup.textContent = card.name;
-}
+// function handleClickImg () {
+//   openPopup(popupWithImage);
+//   imageInPopup.src = card.link;
+//   imageInPopup.alt = card.name;
+//   figcaptionPopup.textContent = card.name;
+// }
 
-// initialCards.forEach((initialCard) => {
-//   const newCard = createCard(initialCard);
-//   renderCard(newCard);
-// });
+
+
 
 function keyHandler(evt) {
   if (checkClosePopup(evt)) {
@@ -112,6 +111,18 @@ function handleSubmitFormEdit(evt) {
   closePopup(popupEdit);
 }
 
+const renderCard = (cardElement) => {
+  catalogCards.prepend(cardElement);
+};
+
+initialCards.forEach((initialCard) => {
+  const prototypeCard = new Card(initialCard, templateCardSelector);
+  const newCard = prototypeCard.createCard();
+  renderCard(newCard);
+  
+});
+
+
 // function handleSubmitFormAdd(evt) {
 //   evt.preventDefault();
 //   const newDataCard = {
@@ -119,17 +130,41 @@ function handleSubmitFormEdit(evt) {
 //     link: inputCardLink.value
 //   };
 
-//   const inputsArray = [
-//     inputCardName,
-//     inputCardLink
-//   ]
+function handleSubmitFormAdd(evt) {
+  evt.preventDefault();
+  
+ const inputsArray = [
+    inputCardName,
+    inputCardLink
+];
+  const newCard = renderCard(newCard);
+  
+  closePopup(popupAdd);
+  formCardAdd.reset();
 
-//   const newCard = createCard(newDataCard);
-//   renderCard(newCard);
-//   closePopup(popupAdd);
-//   formCardAdd.reset();
-//   toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
-// }
+
+  // toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
+  
+  // const newDataCard = {
+  //   name: inputCardName.value,
+  //   link: inputCardLink.value
+  // };
+
+ 
+
+  // const newCard = createCard(newDataCard);
+  // renderCard(newCard);
+  // closePopup(popupAdd);
+  // formCardAdd.reset();
+  // toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
+
+}
+/////////////////
+
+
+/////////////////
+
+
 
 // обработчики слушателей кнопок
 function handleClickButtonEdit() {
@@ -153,7 +188,7 @@ buttonAdd.addEventListener('click', handleClickButtonAdd);
 
 // слушатели форм
 formProfileEdit.addEventListener('submit', handleSubmitFormEdit);
-// formCardAdd.addEventListener('submit', handleSubmitFormAdd);
+formCardAdd.addEventListener('submit', handleSubmitFormAdd);
 
 // закрытие попапов
 popups.forEach((popup) => {
