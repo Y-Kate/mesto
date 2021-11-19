@@ -13,7 +13,7 @@ class Card {
   }
 
   // функции для карточек
-  createCard(card) {
+  createCard = (card) => {
     // наполнение информацией
     this.cardImage.src = this.newCardLink;
     this.cardImage.alt = this.newCardName;
