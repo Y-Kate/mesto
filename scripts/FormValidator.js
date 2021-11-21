@@ -1,16 +1,15 @@
 class FormValidator {
   constructor(dataForm, formElement) {
-    this.dataClasses = dataForm;
-    this.formElement = formElement;
-    this.inputs = Array.from(formElement.querySelectorAll(dataForm.inputSelector));
-    this.buttonSubmit = formElement.querySelector(dataForm.submitButtonSelector);
-
+    this._dataClasses = dataForm;
+    this._formElement = formElement;
+    this._inputs = Array.from(formElement.querySelectorAll(dataForm.inputSelector));
+    this._buttonSubmit = formElement.querySelector(dataForm.submitButtonSelector);
   }
 
   // обработчики значений input
   enableValidation = () => {
-    this.inputs.forEach((input) => this._addListenersToInput(input));
-    this.formElement.addEventListener('input', this._setSubmitButtonState);
+    this._inputs.forEach((input) => this._addListenersToInput(input));
+    this._formElement.addEventListener('input', this._setSubmitButtonState);
     this._setSubmitButtonState();
   }
 
@@ -23,7 +22,7 @@ class FormValidator {
     const spanErrorElement = document.querySelector(`#${inputElement.id}-error`);
     spanErrorElement.textContent = inputElement.validationMessage;
     inputElement.classList.toggle(
-      this.dataClasses.inputErrorClass,
+      this._dataClasses.inputErrorClass,
       !inputElement.validity.valid,
     )
   }
@@ -37,13 +36,13 @@ class FormValidator {
   }
 
   toggleActivateButtonSubmit = (isActivate) => {
-    this.buttonSubmit.disabled = isActivate;
-    this.buttonSubmit.classList.toggle(this.dataClasses.inactiveButtonClass, isActivate);
+    this._buttonSubmit.disabled = isActivate;
+    this._buttonSubmit.classList.toggle(this._dataClasses.inactiveButtonClass, isActivate);
   }
 
   // проверка всех инпутов формы
   _hasInvalidInput = () => {
-    return this.inputs.some((inputElement) => {
+    return this._inputs.some((inputElement) => {
       return !inputElement.validity.valid;
     })
   }

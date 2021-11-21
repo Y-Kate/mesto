@@ -30,10 +30,14 @@ const buttonSubmitAddCard = formCardAdd.querySelector('.form-popup__button-save'
 // popup просмотра карточки
 const popupWithImage = document.querySelector('.popup_type_img');
 
+// popup img
+const imageInPopup = popupWithImage.querySelector('.popup__image');
+const figcaptionPopup = popupWithImage.querySelector('.popup__figcaption');
+
 // карточки
 const catalogCards = document.querySelector('.catalog');
 
-////////////////////////////////////////// для классов
+// для классов
 const templateCardSelector = '#templateCard';
 
 const dataClasses = {
@@ -43,7 +47,6 @@ const dataClasses = {
   inactiveButtonClass: 'form-popup__button-invalid',
   inputErrorClass: 'form-popup__input_state_invalid',
 }
-// обработчики значений input
 
 const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit);
 const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
@@ -51,30 +54,7 @@ const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
 formEditProfileValidator.enableValidation();
 formAddCardValidator.enableValidation();
 
-
-// function enableValidation(dataClasses) {
-//   const forms = Array.from(document.querySelectorAll(dataClasses.formSelector));
-//   forms.forEach((form) => {
-//     form.addEventListener('submit', (evt) => {
-//       evt.preventDefault() // зачем нужна повторная отмена стандартной отправки формы? Мы ведь в обработчиках submit на 102 и 109 строчках в index.js их уже отменяем
-//     });
-//     enableValidation(form, dataClasses);
-//   });
-// }
-
-// enableValidation(dataClasses);
-
-
-
-
-
-//////////////////////////////////////////////////////////
-
-// popup img
-const imageInPopup = popupWithImage.querySelector('.popup__image');
-const figcaptionPopup = popupWithImage.querySelector('.popup__figcaption');
-
-// функция popup Img
+// функции popup Img
 function handleClickImg (dataCard) {
   imageInPopup.src = dataCard.link;
   imageInPopup.alt = dataCard.name;
@@ -118,36 +98,19 @@ initialCards.forEach((initialCard) => {
   renderCard(newCard);
 });
 
-
 function handleSubmitFormAdd(evt) {
   evt.preventDefault();
-
   const newDataCard = {
     name: inputCardName.value,
     link: inputCardLink.value
   };
-  
   const prototypeCardTwo = new Card(newDataCard, templateCardSelector, handleClickImg);
   const newCard = prototypeCardTwo.createCard();
   renderCard(newCard);
-  // const inputsArray = [ // TODO ненужно?
-  //   inputCardName,
-  //   inputCardLink
-  // ];
-
-  // const newCard = createCard(newDataCard);
-  // renderCard(newCard);
-    closePopup(popupAdd);
-    formCardAdd.reset();
-    formAddCardValidator.toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
-
+  closePopup(popupAdd);
+  formCardAdd.reset();
+  formAddCardValidator.toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
 }
-/////////////////
-
-
-/////////////////
-
-
 
 // обработчики слушателей кнопок
 function handleClickButtonEdit() {
@@ -181,4 +144,3 @@ popups.forEach((popup) => {
     }
   });
 });
-

@@ -1,57 +1,49 @@
 class Card {
   constructor(cardData, templateCardSelector, handleClickImg) {
-    this.formCard = document.querySelector(templateCardSelector).content;
-    this.cardElement = this.formCard.querySelector('.card').cloneNode(true);
-    this.cardImage = this.cardElement.querySelector('.card__image');
-    this.cardTitle = this.cardElement.querySelector('.card__title');
-    this.buttonLike = this.cardElement.querySelector('.card__button-like');
-    this.buttonTrash = this.cardElement.querySelector('.card__button-trash');
-    this.newCardLink = cardData.link;
-    this.newCardName = cardData.name;
+    this._formCard = document.querySelector(templateCardSelector).content;
+    this._cardElement = this._formCard.querySelector('.card').cloneNode(true);
+    this._cardImage = this._cardElement.querySelector('.card__image');
+    this._cardTitle = this._cardElement.querySelector('.card__title');
+    this._buttonLike = this._cardElement.querySelector('.card__button-like');
+    this._buttonTrash = this._cardElement.querySelector('.card__button-trash');
+    this._newCardLink = cardData.link;
+    this._newCardName = cardData.name;
     this._handleClickImg = handleClickImg;
   }
 
   _packCard = () => {
     // наполнение информацией
-    this.cardImage.src = this.newCardLink;
-    this.cardImage.alt = this.newCardName;
-    this.cardTitle.textContent = this.newCardName;
+    this._cardImage.src = this._newCardLink;
+    this._cardImage.alt = this._newCardName;
+    this._cardTitle.textContent = this._newCardName;
   };
- 
-  _getDataCard =() => {
-  const dataCard = {
-    link: this.newCardLink,
-    name: this.newCardName
-  }
-    return this.dataCard; 
-  }
 
   _listenerCard = () => {
   // слушатели like
-  this.buttonLike.addEventListener('click', this._handlerButtonLike);
+  this._buttonLike.addEventListener('click', this._handlerButtonLike);
 
   // слушатели trash
-  this.buttonTrash.addEventListener('click', this._handlerRemoveCard);
-  this.cardImage.addEventListener('click', () => {
+  this._buttonTrash.addEventListener('click', this._handlerRemoveCard);
+  this._cardImage.addEventListener('click', () => {
     this._handleClickImg({
-      link: this.newCardLink,
-      name: this.newCardName
+      link: this._newCardLink,
+      name: this._newCardName
     })
-  }); //разобраться с обработчиком
+  }); 
   }
 
   _handlerRemoveCard = () => {
-    this.cardElement.remove();
+    this._cardElement.remove();
   }
 
   _handlerButtonLike = () => {
-    this.buttonLike.classList.toggle('card__button-like_active');
+    this._buttonLike.classList.toggle('card__button-like_active');
   }
 
   createCard = () => {
     this._packCard();
     this._listenerCard();
-    return this.cardElement
+    return this._cardElement
   }
 }
 
