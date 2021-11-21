@@ -48,8 +48,8 @@ const dataClasses = {
 const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit);
 const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
 
-formEditProfileValidator.setEventListeners();
-formAddCardValidator.setEventListeners();
+formEditProfileValidator.enableValidation();
+formAddCardValidator.enableValidation();
 
 
 // function enableValidation(dataClasses) {
@@ -58,7 +58,7 @@ formAddCardValidator.setEventListeners();
 //     form.addEventListener('submit', (evt) => {
 //       evt.preventDefault() // зачем нужна повторная отмена стандартной отправки формы? Мы ведь в обработчиках submit на 102 и 109 строчках в index.js их уже отменяем
 //     });
-//     setEventListeners(form, dataClasses);
+//     enableValidation(form, dataClasses);
 //   });
 // }
 

@@ -15,29 +15,31 @@ class Card {
     this.cardImage.src = this.newCardLink;
     this.cardImage.alt = this.newCardName;
     this.cardTitle.textContent = this.newCardName;
-    //работает с одной
-
-    // слушатели like
-    this.buttonLike.addEventListener('click', () => {
-      this.buttonLike.classList.toggle('card__button-like_active');
-    });
-    //работает с одной
-
-    // слушатели trash
-    this.buttonTrash.addEventListener('click', () => {
-      this.cardElement.remove();
-    });
-    //работает с одной
-
-    // this.cardImage.addEventListener('click', handleClickImg); //разобраться с обработчиком
-
   };
  
-  createCard = () => {
-    this._packCard();
-    return this.cardElement
+  _listenerCard = () => {
+  // слушатели like
+  this.buttonLike.addEventListener('click', this._handlerButtonLike);
+
+  // слушатели trash
+  this.buttonTrash.addEventListener('click', this._handlerRemoveCard);
+
+  // this.cardImage.addEventListener('click', handleClickImg); //разобраться с обработчиком
   }
 
+  _handlerRemoveCard = () => {
+    this.cardElement.remove();
+  }
+
+  _handlerButtonLike = () => {
+    this.buttonLike.classList.toggle('card__button-like_active');
+  }
+
+  createCard = () => {
+    this._packCard();
+    this._listenerCard();
+    return this.cardElement
+  }
 }
 
 export default Card;

@@ -8,9 +8,9 @@ class FormValidator {
   }
 
   // обработчики значений input
-  setEventListeners = () => {
+  enableValidation = () => {
     this.inputs.forEach((input) => this._addListenersToInput(input));
-    this.formElement.addEventListener('input', () => this._setSubmitButtonState());
+    this.formElement.addEventListener('input', this._setSubmitButtonState);
     this._setSubmitButtonState();
   }
 
