@@ -75,15 +75,12 @@ const imageInPopup = popupWithImage.querySelector('.popup__image');
 const figcaptionPopup = popupWithImage.querySelector('.popup__figcaption');
 
 // функция popup Img
-// function handleClickImg () {
-//   openPopup(popupWithImage);
-//   imageInPopup.src = card.link;
-//   imageInPopup.alt = card.name;
-//   figcaptionPopup.textContent = card.name;
-// }
-
-
-
+function handleClickImg (dataCard) {
+  imageInPopup.src = dataCard.link;
+  imageInPopup.alt = dataCard.name;
+  figcaptionPopup.textContent = dataCard.name;
+  openPopup(popupWithImage);
+}
 
 function keyHandler(evt) {
   if (checkClosePopup(evt)) {
@@ -116,10 +113,9 @@ const renderCard = (cardElement) => {
 };
 
 initialCards.forEach((initialCard) => {
-  const prototypeCard = new Card(initialCard, templateCardSelector);
+  const prototypeCard = new Card(initialCard, templateCardSelector, handleClickImg);
   const newCard = prototypeCard.createCard();
   renderCard(newCard);
-  
 });
 
 
@@ -131,7 +127,7 @@ function handleSubmitFormAdd(evt) {
     link: inputCardLink.value
   };
   
-  const prototypeCardTwo = new Card(newDataCard, templateCardSelector);
+  const prototypeCardTwo = new Card(newDataCard, templateCardSelector, handleClickImg);
   const newCard = prototypeCardTwo.createCard();
   renderCard(newCard);
   // const inputsArray = [ // TODO ненужно?
