@@ -1,54 +1,35 @@
-import FormValidator from './FormValidator.js';
-import { initialCards } from './initial-сards.js';
-import Card from './Card.js';
+import FormValidator from '../scripts/FormValidator.js';
+// import { initialCards } from '../scripts/initial-сards.js';
+import Card from '../scripts/Card.js';
+import {
+  initialCards,
+  buttonEdit,
+  buttonAdd,
+  profileNameElement,
+  profileDescriptionElement,
+  popups,
+  popupEdit,
+  inputName,
+  inputAbout,
+  formProfileEdit,
+  popupAdd,
+  formCardAdd,
+  inputCardName,
+  inputCardLink,
+  buttonSubmitAddCard,
+  popupWithImage,
+  imageInPopup,
+  figcaptionPopup,
+  catalogCardsContainer,
+  templateCardSelector,
+  dataClasses
+} from '../utils/constants.js'
 
-// кнопки на странице
-const buttonEdit = document.querySelector('.profile__modify');
-const buttonAdd = document.querySelector('.profile__button-add');
 
-// профиль
-const profileNameElement = document.querySelector('.profile__name');
-const profileDescriptionElement  = document.querySelector('.profile__description');
-
-// все попапы
-const popups = Array.from(document.querySelectorAll('.popup'));
-
-// popup редактирования профиля
-const popupEdit = document.querySelector('.popup_type_edit');
-const inputName = popupEdit.querySelector('.form-popup__input_type_name');
-const inputAbout = popupEdit.querySelector('.form-popup__input_type_profession');
-const formProfileEdit = popupEdit.querySelector('.form-popup');
-
-// popup добавления карточки
-const popupAdd = document.querySelector('.popup_type_add');
-const formCardAdd = popupAdd.querySelector('.form-popup');
-const inputCardName = popupAdd.querySelector('.form-popup__input_type_name-card');
-const inputCardLink = popupAdd.querySelector('.form-popup__input_type_link-card');
-const buttonSubmitAddCard = formCardAdd.querySelector('.form-popup__button-save');
-
-// popup просмотра карточки
-const popupWithImage = document.querySelector('.popup_type_img');
-
-// popup img
-const imageInPopup = popupWithImage.querySelector('.popup__image');
-const figcaptionPopup = popupWithImage.querySelector('.popup__figcaption');
-
-// карточки
-const catalogCardsContainer = document.querySelector('.catalog');
-
-// для классов
-const templateCardSelector = '#templateCard';
-
-const dataClasses = {
-  formSelector: '.form-popup',
-  inputSelector: '.form-popup__input',
-  submitButtonSelector: '.form-popup__button-save',
-  inactiveButtonClass: 'form-popup__button-invalid',
-  inputErrorClass: 'form-popup__input_state_invalid',
-}
 
 const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit);
 const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
+
 
 // функции popup Img
 export function handleClickImg (dataCard) {

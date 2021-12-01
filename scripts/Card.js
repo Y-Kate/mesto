@@ -1,4 +1,4 @@
-import { handleClickImg } from "./index.js";
+import { handleClickImg } from "../pages/index.js";
 
 class Card {
   constructor({ link, name }, templateCardSelector) {
