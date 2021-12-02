@@ -36,23 +36,23 @@ export function handleClickImg (dataCard) {
   openPopup(popupWithImage);
 }
 
-function keyHandler(evt) {
-  if (checkClosePopup(evt)) {
-    const activePopup = document.querySelector('.popup_opened')
-    closePopup(activePopup);
-  }
-}
+// function keyHandler(evt) {
+//   if (checkClosePopup(evt)) {
+//     const activePopup = document.querySelector('.popup_opened')
+//     closePopup(activePopup);
+//   }
+// }
 
-// функции popup
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', keyHandler);
-}
+// // функции popup
+// function closePopup(popup) {
+//   popup.classList.remove('popup_opened');
+//   document.removeEventListener('keydown', keyHandler);
+// }
 
-function openPopup(popup) {
-  document.addEventListener('keydown', keyHandler);
-  popup.classList.add('popup_opened');
-}
+// function openPopup(popup) {
+//   document.addEventListener('keydown', keyHandler);
+//   popup.classList.add('popup_opened');
+// }
 
 // обработчики форм
 function handleSubmitFormEdit(evt) {
@@ -97,16 +97,16 @@ function handleClickButtonAdd() {
   openPopup(popupAdd);
 }
 
-// проверка закрывать попап или нет
-function checkClosePopup(evt) {
-  return evt.target.classList.contains('popup__close') || evt.target === evt.currentTarget || evt.key === "Escape";
-}
+// // проверка закрывать попап или нет
+// function checkClosePopup(evt) {
+//   return evt.target.classList.contains('popup__close') || evt.target === evt.currentTarget || evt.key === "Escape";
+// }
 
-function handleClickPopup(evt) {
-  if (checkClosePopup(evt)) {
-    closePopup(evt.currentTarget);
-  }
-};
+// function handleClickPopup(evt) {
+//   if (checkClosePopup(evt)) {
+//     closePopup(evt.currentTarget);
+//   }
+// };
 
 initialCards.forEach(createNewCard);
 
@@ -121,7 +121,7 @@ buttonAdd.addEventListener('click', handleClickButtonAdd);
 formProfileEdit.addEventListener('submit', handleSubmitFormEdit);
 formCardAdd.addEventListener('submit', handleSubmitFormAdd);
 
-// закрытие попапов
-popups.forEach((popup) => {
-  popup.addEventListener('click', handleClickPopup);
-});
+// // закрытие попапов
+// popups.forEach((popup) => {
+//   popup.addEventListener('click', handleClickPopup);
+// });
