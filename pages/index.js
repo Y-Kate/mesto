@@ -29,12 +29,12 @@ const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
 
 
 // функции popup Img
-export function handleClickImg (dataCard) {
-  imageInPopup.src = dataCard.link;
-  imageInPopup.alt = dataCard.name;
-  figcaptionPopup.textContent = dataCard.name;
-  openPopup(popupWithImage);
-}
+// export function handleClickImg (dataCard) {
+//   imageInPopup.src = dataCard.link;
+//   imageInPopup.alt = dataCard.name;
+//   figcaptionPopup.textContent = dataCard.name;
+//   openPopup(popupWithImage);
+// }
 
 // function keyHandler(evt) {
 //   if (checkClosePopup(evt)) {
