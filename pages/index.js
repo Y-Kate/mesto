@@ -1,6 +1,5 @@
-import FormValidator from '../scripts/FormValidator.js';
-// import { initialCards } from '../scripts/initial-сards.js';
-import Card from '../scripts/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Card from '../components/Card.js';
 import {
   initialCards,
   buttonEdit,
@@ -23,9 +22,7 @@ import {
   catalogCardsContainer,
   templateCardSelector,
   dataClasses
-} from '../utils/constants.js'
-
-
+} from '../utils/constants.js' // импорт всех констант
 
 const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit);
 const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
