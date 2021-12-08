@@ -8,7 +8,7 @@ class Popup {
     this._popup.classList.add('popup_opened');
   };
 
-  close = () => {
+  close() {
     this._popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._handleEscClose);
   };
@@ -19,7 +19,7 @@ class Popup {
     }
   };
 
-  setEventListeners = () => {
+  setEventListeners() {
     this._popup.addEventListener('click', this._handleClickPopup);
   };
 
@@ -29,3 +29,5 @@ class Popup {
     }
   };
 }
+
+export default Popup;

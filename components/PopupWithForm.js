@@ -1,9 +1,12 @@
+import Popup from "./Popup.js";
+
 class PopupWithForm extends Popup {
   constructor( popupSelector, handleSubmitForm ) {
     super(popupSelector);
-    this._inputName = super._popup.querySelector('.form-popup__input_type_name');
-    this._inputAbout = super._popup.querySelector('.form-popup__input_type_profession');
-
+    this._inputName = this._popup.querySelector('.form-popup__input_type_name');
+    this._inputAbout = this._popup.querySelector('.form-popup__input_type_profession');
+    this._form = this._popup.querySelector('.form-popup');
+    this._handleSubmitForm = handleSubmitForm;
   }
 
   _getInputValues = () => {
@@ -12,17 +15,14 @@ class PopupWithForm extends Popup {
   };
 
   setEventListeners = () => {
-
+    super.setEventListeners();
+    this._form.addEventListener('submit', this._handleSubmitForm);
   };
-
+  
   close = () => {
-
+    super.close();
+    this._form.reset(); // сбрасывание формы
   };
-}
+};
 
-function handleSubmitFormEdit(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  profileNameElement.textContent = inputName.value;
-  profileDescriptionElement.textContent = inputAbout.value;
-  closePopup(popupEdit);
-}
+export default PopupWithForm;

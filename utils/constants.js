@@ -37,12 +37,14 @@ export const profileDescriptionElement  = document.querySelector('.profile__desc
 export const popups = Array.from(document.querySelectorAll('.popup'));
 
 // popup редактирования профиля
+export const popupEditSelector = '.popup_type_edit';
 export const popupEdit = document.querySelector('.popup_type_edit');
 export const inputName = popupEdit.querySelector('.form-popup__input_type_name');
 export const inputAbout = popupEdit.querySelector('.form-popup__input_type_profession');
 export const formProfileEdit = popupEdit.querySelector('.form-popup');
 
 // popup добавления карточки
+export const popupAddSelector = '.popup_type_add';
 export const popupAdd = document.querySelector('.popup_type_add');
 export const formCardAdd = popupAdd.querySelector('.form-popup');
 export const inputCardName = popupAdd.querySelector('.form-popup__input_type_name-card');
