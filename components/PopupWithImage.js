@@ -1,26 +1,17 @@
 class PopupWithImage extends Popup {
-  constructor( data,popupSelector) {
+  constructor( data, popupSelector ) {
     super(popupSelector);
-    this._popup =document.querySelector(super(popupSelector));
-    this._dataCardSrc = data.link;
-    this._dataCardAlt = data.name;
-    this._figcaptionPopup = this._dataCardAlt;
+    this._popup = document.querySelector(popupSelector);
+    this._imagePopup = this._popup.querySelector('.popup__image');
+    this._figcaptionPopup = this._popup.querySelector('.popup__figcaption');
+    this._cardLink = data.link;
+    this._cardName = data.name;
   }
 
-  open = (data) => {
-    this._dataCardSrc;
-    this._dataCardAlt;
-    this._figcaptionPopup;
+  open = () => {
+    this._imagePopup.src = this._cardLink;
+    this._imagePopup.alt = this._cardName;
+    this._figcaptionPopup.textContent = this._cardName;
     this._popup.classList.add('popup_opened');
   };
-
-
-
 }
-
-// export function handleClickImg (dataCard) {
-//   imageInPopup.src = dataCard.link;
-//   imageInPopup.alt = dataCard.name;
-//   figcaptionPopup.textContent = dataCard.name;
-//   openPopup(popupWithImage);
-// }
