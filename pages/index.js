@@ -33,19 +33,19 @@ const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
 const popupFormAuthor = new PopupWithForm(
   popupEditSelector,
   function handleSubmitFormEdit(authorValues) {
-    profileNameElement.textContent = authorValues.name;
-    profileDescriptionElement.textContent = authorValues.nameAbout;
+    profileNameElement.textContent = authorValues['author-name'];
+    profileDescriptionElement.textContent = authorValues['author-about'];
     popupFormAuthor.close();
   }
 );
 
 const popupFormNewCard = new PopupWithForm(
   popupAddSelector,
-  function handleSubmitFormAdd(evt) {
-    evt.preventDefault();
+  function handleSubmitFormAdd(newCardValues) {
+  console.log('newCardValues', newCardValues);
     const newDataCard = {
-      name: inputCardName.value,
-      link: inputCardLink.value
+      name: newCardValues['card-name'],
+      link: newCardValues['card-link']
     };
     createNewCard(newDataCard);
     popupFormNewCard.close();
