@@ -32,10 +32,9 @@ const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
 
 const popupFormAuthor = new PopupWithForm(
   popupEditSelector,
-  function handleSubmitFormEdit(evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    profileNameElement.textContent = inputName.value;
-    profileDescriptionElement.textContent = inputAbout.value;
+  function handleSubmitFormEdit(authorValues) {
+    profileNameElement.textContent = authorValues.name;
+    profileDescriptionElement.textContent = authorValues.nameAbout;
     popupFormAuthor.close();
   }
 );
