@@ -3,6 +3,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
+import UserInfo from '../components/UserInfo.js';
 import {
   initialCards,
   buttonEdit,
@@ -28,24 +29,29 @@ import {
   popupEditSelector,
   popupAddSelector,
   popupWithImageSelector,
-  catalogCardsSelector
+  catalogCardsSelector,
+  profileSelectors,
 } from '../utils/constants.js' // импорт всех констант
 
 const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit);
 const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
+const userInfo = new UserInfo(profileSelectors)
 
 const popupFormAuthor = new PopupWithForm(
   popupEditSelector,
-  function handleSubmitFormEdit(authorValues) {
-    profileNameElement.textContent = authorValues['author-name'];
-    profileDescriptionElement.textContent = authorValues['author-about'];
+  (authorValues) => {
+    const newAuthorData = {
+      name: authorValues['author-name'],
+      about: authorValues['author-about']
+    }
+    userInfo.setUserInfo(newAuthorData)
     popupFormAuthor.close();
   }
 );
 
 const popupFormNewCard = new PopupWithForm(
   popupAddSelector,
-  function handleSubmitFormAdd(newCardValues) {
+  (newCardValues) => {
     const newDataCard = {
       name: newCardValues['card-name'],
       link: newCardValues['card-link']
@@ -114,13 +120,11 @@ const cardList = new Section(
 
 cardList.renderItems();
 
-
-
-
 // обработчики слушателей кнопок
 function handleClickButtonEdit() {
-  inputName.value = profileNameElement.textContent;
-  inputAbout.value = profileDescriptionElement.textContent;
+  const dataUser = userInfo.getUserInfo();
+  inputName.value = dataUser.name;
+  inputAbout.value = dataUser.about;
   formEditProfileValidator.checkInputsError();
   popupFormAuthor.open();
 }

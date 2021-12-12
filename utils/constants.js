@@ -30,6 +30,10 @@ export const buttonEdit = document.querySelector('.profile__modify');
 export const buttonAdd = document.querySelector('.profile__button-add');
 
 // профиль
+export const profileSelectors = {
+  authorNameSelector: '.profile__name',
+  authorAboutSelector: '.profile__description'
+};
 export const profileNameElement = document.querySelector('.profile__name');
 export const profileDescriptionElement  = document.querySelector('.profile__description');
 

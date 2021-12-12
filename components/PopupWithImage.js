@@ -14,8 +14,8 @@ class PopupWithImage extends Popup {
     this._imagePopup.src = this._cardLink;
     this._imagePopup.alt = this._cardName;
     this._figcaptionPopup.textContent = this._cardName;
-    super.open();
     super.setEventListeners();
+    super.open();
   };
 }
 

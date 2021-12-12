@@ -1,32 +1,21 @@
 class UserInfo {
-  constructor ( { authorNameSelector, authorAboutSelector,} ) {
-    this._authorNameSelector = authorNameSelector;
-    this._authorAboutSelector = authorAboutSelector;
-    this._inputName = this._authorNameSelector.querySelector('.form-popup__input_type_name');
-    this._inputAbouth = this._authorAboutSelector.querySelector('.form-popup__input_type_profession');
+  constructor( { authorNameSelector, authorAboutSelector } ) {
+    this._authorNameElement = document.querySelector(authorNameSelector);
+    this._authorAboutElement = document.querySelector(authorAboutSelector);
   }
 
   getUserInfo = () => {
-    let values = {};
-    // this._inputName = () => {
-    //   values[input.name] = input.value;
-    // };
-    // console.log(values);
-    
-    return values;
+    const dataAuthor = {
+      name: this._authorNameElement.textContent,
+      about: this._authorAboutElement.textContent
+    };
+    return dataAuthor;
   };
 
-  setUserInfo = () => {
-    const values = this.getUserInfo;
-
+  setUserInfo(dataUser) {
+    this._authorNameElement.textContent = dataUser.name;
+    this._authorAboutElement.textContent = dataUser.about;
   };
-
 }
 
-
-// function handleClickButtonEdit() {
-//   inputName.value = profileNameElement.textContent;
-//   inputAbout.value = profileDescriptionElement.textContent;
-//   formEditProfileValidator.checkInputsError();
-//   popupFormAuthor.open();
-// }
+export default UserInfo;
