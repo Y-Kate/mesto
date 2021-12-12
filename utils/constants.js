@@ -34,11 +34,6 @@ export const profileSelectors = {
   authorNameSelector: '.profile__name',
   authorAboutSelector: '.profile__description'
 };
-export const profileNameElement = document.querySelector('.profile__name');
-export const profileDescriptionElement  = document.querySelector('.profile__description');
-
-// все попапы
-export const popups = Array.from(document.querySelectorAll('.popup'));
 
 // popup редактирования профиля
 export const popupEditSelector = '.popup_type_edit';
@@ -51,23 +46,15 @@ export const formProfileEdit = popupEdit.querySelector('.form-popup');
 export const popupAddSelector = '.popup_type_add';
 export const popupAdd = document.querySelector('.popup_type_add');
 export const formCardAdd = popupAdd.querySelector('.form-popup');
-export const inputCardName = popupAdd.querySelector('.form-popup__input_type_name-card');
-export const inputCardLink = popupAdd.querySelector('.form-popup__input_type_link-card');
 export const buttonSubmitAddCard = formCardAdd.querySelector('.form-popup__button-save');
 
 // popup просмотра карточки
 export const popupWithImageSelector = '.popup_type_img';
-export const popupWithImage = document.querySelector('.popup_type_img');
 
-// popup img
-export const imageInPopup = popupWithImage.querySelector('.popup__image');
-export const figcaptionPopup = popupWithImage.querySelector('.popup__figcaption');
-
-// карточки
+// каталог для карточек
 export const catalogCardsSelector = '.catalog';
-export const catalogCardsContainer = document.querySelector('.catalog');
 
-// для классов
+// для создания карточек
 export const templateCardSelector = '#templateCard';
 
 export const dataClasses = {

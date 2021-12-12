@@ -7,7 +7,7 @@ class FormValidator {
     this._buttonSubmit = formElement.querySelector(dataForm.submitButtonSelector);
   }
 
-  // обработчики значений input
+  // запуск валидации
   enableValidation = () => {
     this._inputs.forEach((input) => this._addListenersToInput(input));
     this._formElement.addEventListener('input', this._setSubmitButtonState);

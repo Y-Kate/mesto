@@ -11,8 +11,8 @@ class Card {
     this._handleClickImg = handleClickImg;
   }
 
+  // наполнение информацией
   _packCard = () => {
-    // наполнение информацией
     this._cardImage.src = this._newCardLink;
     this._cardImage.alt = this._newCardName;
     this._cardTitle.textContent = this._newCardName;
