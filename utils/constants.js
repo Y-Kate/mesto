@@ -52,6 +52,7 @@ export const inputCardLink = popupAdd.querySelector('.form-popup__input_type_lin
 export const buttonSubmitAddCard = formCardAdd.querySelector('.form-popup__button-save');
 
 // popup просмотра карточки
+export const popupWithImageSelector = '.popup_type_img';
 export const popupWithImage = document.querySelector('.popup_type_img');
 
 // popup img
@@ -59,6 +60,7 @@ export const imageInPopup = popupWithImage.querySelector('.popup__image');
 export const figcaptionPopup = popupWithImage.querySelector('.popup__figcaption');
 
 // карточки
+export const catalogCardsSelector = '.catalog';
 export const catalogCardsContainer = document.querySelector('.catalog');
 
 // для классов

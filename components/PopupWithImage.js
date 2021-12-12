@@ -1,3 +1,5 @@
+import Popup from "./Popup.js";
+
 class PopupWithImage extends Popup {
   constructor( data, popupSelector ) {
     super(popupSelector);
@@ -12,6 +14,9 @@ class PopupWithImage extends Popup {
     this._imagePopup.src = this._cardLink;
     this._imagePopup.alt = this._cardName;
     this._figcaptionPopup.textContent = this._cardName;
-    this._popup.classList.add('popup_opened');
+    super.open();
+    super.setEventListeners();
   };
 }
+
+export default PopupWithImage;

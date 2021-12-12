@@ -1,5 +1,7 @@
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import {
   initialCards,
@@ -24,7 +26,9 @@ import {
   templateCardSelector,
   dataClasses,
   popupEditSelector,
-  popupAddSelector
+  popupAddSelector,
+  popupWithImageSelector,
+  catalogCardsSelector
 } from '../utils/constants.js' // импорт всех констант
 
 const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit);
@@ -42,12 +46,12 @@ const popupFormAuthor = new PopupWithForm(
 const popupFormNewCard = new PopupWithForm(
   popupAddSelector,
   function handleSubmitFormAdd(newCardValues) {
-  console.log('newCardValues', newCardValues);
     const newDataCard = {
       name: newCardValues['card-name'],
       link: newCardValues['card-link']
     };
-    createNewCard(newDataCard);
+    const newCard = createNewCard(newDataCard, templateCardSelector, handleClickImg)
+    cardList.addItem(newCard)
     popupFormNewCard.close();
     formCardAdd.reset();
     formAddCardValidator.toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
@@ -58,13 +62,7 @@ popupFormAuthor.setEventListeners();
 popupFormNewCard.setEventListeners();
 
 
-// функции popup Img
-// export function handleClickImg (dataCard) {
-//   imageInPopup.src = dataCard.link;
-//   imageInPopup.alt = dataCard.name;
-//   figcaptionPopup.textContent = dataCard.name;
-//   openPopup(popupWithImage);
-// }
+
 
 // function keyHandler(evt) {
 //   if (checkClosePopup(evt)) {
@@ -86,17 +84,35 @@ popupFormNewCard.setEventListeners();
 
 // обработчики форм
 
-
-
-const renderCard = (cardElement) => {
-  catalogCardsContainer.prepend(cardElement);
-};
-
-function createNewCard(card) {
-  const prototypeCard = new Card(card, templateCardSelector);
-  const newCard = prototypeCard.createCard();
-  renderCard(newCard);
+function handleClickImg(dataCard) {
+  const popupWhithImage = new PopupWithImage(
+    dataCard,
+    popupWithImageSelector
+  )
+  popupWhithImage.open();
 }
+
+function createNewCard(card, templateCardSelector, handleClickImg) {
+  const prototypeCard = new Card(
+    card,
+    templateCardSelector,
+    handleClickImg
+  );
+  return prototypeCard.createCard();
+}
+
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: function renderer(initialCard) {
+      const newCard = createNewCard(initialCard, templateCardSelector, handleClickImg)
+      cardList.addItem(newCard)
+    }
+  },
+  catalogCardsSelector
+)
+
+cardList.renderItems();
 
 
 
@@ -123,8 +139,6 @@ function handleClickButtonAdd() {
 //     closePopup(evt.currentTarget);
 //   }
 // };
-
-initialCards.forEach(createNewCard);
 
 formEditProfileValidator.enableValidation();
 formAddCardValidator.enableValidation();

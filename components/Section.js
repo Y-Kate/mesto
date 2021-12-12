@@ -15,3 +15,5 @@ class Section {
     this._containerElement.prepend(element)
   }
 }
+
+export default Section;
