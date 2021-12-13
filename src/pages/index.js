@@ -13,7 +13,6 @@ import {
   inputAbout,
   formProfileEdit,
   formCardAdd,
-  buttonSubmitAddCard,
   templateCardSelector,
   dataClasses,
   popupEditSelector,
@@ -26,6 +25,7 @@ import {
 // создаем экземпляры классов
 const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit);
 const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
+
 const userInfo = new UserInfo(profileSelectors)
 
 const cardList = new Section(
@@ -61,24 +61,21 @@ const popupFormNewCard = new PopupWithForm(
     const newCard = createNewCard(newDataCard, templateCardSelector, handleClickImg)
     cardList.addItem(newCard)
     popupFormNewCard.close();
-    formCardAdd.reset();
-    formAddCardValidator.toggleActivateButtonSubmit(buttonSubmitAddCard, dataClasses, true);
   }
 );
+
+const popupWhithImage = new PopupWithImage(popupWithImageSelector)
 
 // запускаем экземпляры классов
 formEditProfileValidator.enableValidation();
 formAddCardValidator.enableValidation();
 popupFormAuthor.setEventListeners();
 popupFormNewCard.setEventListeners();
+popupWhithImage.setEventListeners();
 cardList.renderItems();
 
 function handleClickImg(dataCard) {
-  const popupWhithImage = new PopupWithImage(
-    dataCard,
-    popupWithImageSelector
-  )
-  popupWhithImage.open();
+  popupWhithImage.open(dataCard);
 }
 
 function createNewCard(card, templateCardSelector, handleClickImg) {
@@ -100,6 +97,7 @@ function handleClickButtonEdit() {
 }
 
 function handleClickButtonAdd() {
+  formAddCardValidator.clearErrors();
   popupFormNewCard.open();
 }
 

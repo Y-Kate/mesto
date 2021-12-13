@@ -42,10 +42,14 @@ class Card {
     this._buttonLike.classList.toggle('card__button-like_active');
   }
 
-  createCard = () => {
-    this._packCard();
+  _setEventListeners = () => {
     this._addListenersCard();
     this._addListenerToImage();
+  }
+
+  createCard = () => {
+    this._packCard();
+    this._setEventListeners();
     return this._cardElement
   }
 }

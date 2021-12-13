@@ -46,7 +46,6 @@ export const formProfileEdit = popupEdit.querySelector('.form-popup');
 export const popupAddSelector = '.popup_type_add';
 export const popupAdd = document.querySelector('.popup_type_add');
 export const formCardAdd = popupAdd.querySelector('.form-popup');
-export const buttonSubmitAddCard = formCardAdd.querySelector('.form-popup__button-save');
 
 // popup просмотра карточки
 export const popupWithImageSelector = '.popup_type_img';

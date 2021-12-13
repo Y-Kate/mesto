@@ -24,7 +24,7 @@ class FormValidator {
   }
 
   _checkInputError = (inputElement) => {
-    const spanErrorElement = document.querySelector(`#${inputElement.id}-error`);
+    const spanErrorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     spanErrorElement.textContent = inputElement.validationMessage;
     inputElement.classList.toggle(
       this._inputErrorClass,
@@ -38,21 +38,35 @@ class FormValidator {
 
   _setSubmitButtonState = () => {
     if (this._hasInvalidInput()) {
-      this.toggleActivateButtonSubmit(true);
+      this._inactivateButtonSubmit();
     } else {
-      this.toggleActivateButtonSubmit(false);
+      this._activateButtonSubmit();
     }
   }
 
-  toggleActivateButtonSubmit = (isActivate) => {
-    this._buttonSubmit.disabled = isActivate;
-    this._buttonSubmit.classList.toggle(this._inactiveButtonClas, isActivate);
+  _activateButtonSubmit = () => {
+    this._buttonSubmit.disabled = false;
+    this._buttonSubmit.classList.remove(this._inactiveButtonClass)
+  }
+
+  _inactivateButtonSubmit = () => {
+    this._buttonSubmit.disabled = true;
+    this._buttonSubmit.classList.add(this._inactiveButtonClass)
   }
 
   // проверка всех инпутов формы
   _hasInvalidInput = () => {
     return this._inputs.some((inputElement) => {
       return !inputElement.validity.valid;
+    })
+  }
+
+  clearErrors = () => {
+    this._inactivateButtonSubmit();
+    this._inputs.forEach((input) => {
+      input.classList.remove(this._inputErrorClass);
+      const spanErrorElement = this._formElement.querySelector(`#${input.id}-error`);
+      spanErrorElement.textContent = '';
     })
   }
 }
