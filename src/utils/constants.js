@@ -32,7 +32,8 @@ export const buttonAdd = document.querySelector('.profile__button-add');
 // профиль
 export const profileSelectors = {
   authorNameSelector: '.profile__name',
-  authorAboutSelector: '.profile__description'
+  authorAboutSelector: '.profile__description',
+  authorAvatarSelector: '.profile__avatar'
 };
 
 // popup редактирования профиля

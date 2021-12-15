@@ -4,6 +4,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
+import Api from '../components/Api';
 import UserInfo from '../components/UserInfo.js';
 import {
   initialCards,
@@ -23,6 +24,7 @@ import {
 } from '../utils/constants.js'
 
 // создаем экземпляры классов
+const api = new Api();
 const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit);
 const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
 
@@ -66,6 +68,19 @@ const popupFormNewCard = new PopupWithForm(
 
 const popupWhithImage = new PopupWithImage(popupWithImageSelector)
 
+api.getUserInfo()
+  .then((res) => {
+    const name = res.name;
+    const about = res.about;
+    const avatar = res.avatar;
+    userInfo.setUserInfo( { name , about } );
+    userInfo.setAvatarUser(avatar)
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+
+
 // запускаем экземпляры классов
 formEditProfileValidator.enableValidation();
 formAddCardValidator.enableValidation();
@@ -86,6 +101,7 @@ function createNewCard(card, templateCardSelector, handleClickImg) {
   );
   return prototypeCard.createCard();
 }
+
 
 // обработчики слушателей кнопок
 function handleClickButtonEdit() {
