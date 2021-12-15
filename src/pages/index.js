@@ -30,16 +30,7 @@ const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
 
 const userInfo = new UserInfo(profileSelectors)
 
-const cardList = new Section(
-  {
-    items: initialCards,
-    renderer: function renderer(initialCard) {
-      const newCard = createNewCard(initialCard, templateCardSelector, handleClickImg)
-      cardList.addItem(newCard)
-    }
-  },
-  catalogCardsSelector
-)
+
 
 const popupFormAuthor = new PopupWithForm(
   popupEditSelector,
@@ -61,7 +52,7 @@ const popupFormNewCard = new PopupWithForm(
       link: newCardValues['card-link']
     };
     const newCard = createNewCard(newDataCard, templateCardSelector, handleClickImg)
-    cardList.addItem(newCard)
+    // cardList.addItem(newCard) // TODO разобраться
     popupFormNewCard.close();
   }
 );
@@ -80,6 +71,23 @@ api.getUserInfo()
     console.log(err);
   })
 
+api.getCards()
+  .then((cardsArr) => {
+    const cardList = new Section(
+      {
+        items: cardsArr,
+        renderer: function renderer(card) {
+          const newCard = createNewCard(card, templateCardSelector, handleClickImg)
+          cardList.addItem(newCard)
+        }
+      },
+      catalogCardsSelector
+    )
+    cardList.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  })
 
 // запускаем экземпляры классов
 formEditProfileValidator.enableValidation();
@@ -87,7 +95,7 @@ formAddCardValidator.enableValidation();
 popupFormAuthor.setEventListeners();
 popupFormNewCard.setEventListeners();
 popupWhithImage.setEventListeners();
-cardList.renderItems();
+
 
 function handleClickImg(dataCard) {
   popupWhithImage.open(dataCard);
