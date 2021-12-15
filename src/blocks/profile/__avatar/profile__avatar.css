@@ -5,6 +5,16 @@
   margin-top: 42px;
   margin-bottom: 26px;
   object-fit: cover;
+  position: relative;
+}
+
+.profile__avatar:hover {
+  cursor: pointer;
+  opacity: 0.4;
+  background-image: url(../../../images/pen.svg);
+  
+  background-size: 25px;
+  background-position: center;
 }
 
 @media (min-width: 620px) {

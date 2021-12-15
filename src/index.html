@@ -91,12 +91,29 @@
         <figcaption class="popup__figcaption">Домбай</figcaption>
       </div>
     </div>
-    <div class="popup popup_type_delete-card popup_opened">
+    <div class="popup popup_type_delete-card">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <form class="form-popup" name="delete-card" novalidate>
           <h3 class="form-popup__title">Вы уверены?</h3>
           <button type="submit" class="form-popup__button-save" aria-label="Да">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_type_edit-avatar">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <form class="form-popup" name="edit-avatar" novalidate>
+          <h3 class="form-popup__title">Обновить аватар</h3>
+          <input 
+          required
+          name="avatarLink"
+          id="avatar-link"
+          type="url" 
+          placeholder="Ссылка на картинку" 
+          class="form-popup__input form-popup__input_type_link-card">
+          <span id="avatar-link-error" class="error"></span>
+          <button type="submit" class="form-popup__button-save" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
     </div>
