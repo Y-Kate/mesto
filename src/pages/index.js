@@ -39,7 +39,16 @@ const popupFormAuthor = new PopupWithForm(
       name: authorValues['author-name'],
       about: authorValues['author-about']
     }
-    userInfo.setUserInfo(newAuthorData)
+    
+    api.editProfile( newAuthorData.name, newAuthorData.about )
+      .then((newProfileData) => {
+        userInfo.setUserInfo(newProfileData)
+      })
+      .catch((err) => {
+        console.log('err', err);
+      })
+    
+
     popupFormAuthor.close();
   }
 );
