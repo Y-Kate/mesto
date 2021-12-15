@@ -1,5 +1,5 @@
 class Card {
-  constructor({ link, name }, templateCardSelector, handleClickImg) {
+  constructor({ link, name, owner }, templateCardSelector, handleClickImg, idUser) {
     this._newCard = document.querySelector(templateCardSelector).content;
     this._cardElement = this._newCard.querySelector('.card').cloneNode(true);
     this._cardImage = this._cardElement.querySelector('.card__image');
@@ -9,6 +9,8 @@ class Card {
     this._newCardLink = link;
     this._newCardName = name;
     this._handleClickImg = handleClickImg;
+    this._idUser = idUser;
+    this._idOwnerCard = owner._id;
   }
 
   // наполнение информацией
@@ -47,8 +49,15 @@ class Card {
     this._addListenerToImage();
   }
 
+  _checkAuthorCard() {
+    if (this._idUser !== this._idOwnerCard) {
+      this._buttonTrash.remove();
+    } 
+  }
+
   createCard = () => {
     this._packCard();
+    this._checkAuthorCard();
     this._setEventListeners();
     return this._cardElement
   }

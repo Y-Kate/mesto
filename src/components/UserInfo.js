@@ -18,6 +18,14 @@ class UserInfo {
     this._authorAboutElement.textContent = dataUser.about;
   };
 
+  setUserId(userId) {
+    this._authorId = userId;
+  }
+
+  getUserId() {
+    return this._authorId;
+  }
+
   setAvatarUser(avatarLink) {
     this._authorAvatarElement.src = avatarLink;
   }

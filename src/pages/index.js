@@ -35,20 +35,14 @@ const userInfo = new UserInfo(profileSelectors)
 const popupFormAuthor = new PopupWithForm(
   popupEditSelector,
   (authorValues) => {
-    const newAuthorData = {
-      name: authorValues['author-name'],
-      about: authorValues['author-about']
-    }
-    
-    api.editProfile( newAuthorData.name, newAuthorData.about )
+    api.editProfile( authorValues.authorName, authorValues.authorAbout )
       .then((newProfileData) => {
+        console.log('newProfileData', newProfileData)
         userInfo.setUserInfo(newProfileData)
       })
       .catch((err) => {
         console.log('err', err);
       })
-    
-
     popupFormAuthor.close();
   }
 );
@@ -56,12 +50,14 @@ const popupFormAuthor = new PopupWithForm(
 const popupFormNewCard = new PopupWithForm(
   popupAddSelector,
   (newCardValues) => {
-    const newDataCard = {
-      name: newCardValues['card-name'],
-      link: newCardValues['card-link']
-    };
-    const newCard = createNewCard(newDataCard, templateCardSelector, handleClickImg)
-    // cardList.addItem(newCard) // TODO разобраться
+    api.addNewCard( newCardValues.cardName, newCardValues.cardLink )
+      .then((cardData) => {
+        const newCard = createNewCard(cardData, templateCardSelector, handleClickImg)
+        // cardList.addItem(newCard) // TODO разобраться
+      })
+      .catch((err) => {
+        console.log('err', err);
+      })
     popupFormNewCard.close();
   }
 );
@@ -73,6 +69,8 @@ api.getUserInfo()
     const name = res.name;
     const about = res.about;
     const avatar = res.avatar;
+    const idUser = res._id;
+    userInfo.setUserId(idUser);
     userInfo.setUserInfo( { name , about } );
     userInfo.setAvatarUser(avatar)
   })
@@ -111,10 +109,12 @@ function handleClickImg(dataCard) {
 }
 
 function createNewCard(card, templateCardSelector, handleClickImg) {
+  const userId = userInfo.getUserId();
   const prototypeCard = new Card(
     card,
     templateCardSelector,
-    handleClickImg
+    handleClickImg,
+    userId
   );
   return prototypeCard.createCard();
 }
