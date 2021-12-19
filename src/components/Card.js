@@ -1,5 +1,5 @@
 class Card {
-  constructor({ link, name, owner, likes }, templateCardSelector, handleClickImg, idUser, handleClickButtonDelete) {
+  constructor({ link, name, owner, likes, _id }, templateCardSelector, handleClickImg, idUser, handleClickButtonDelete) {
     this._newCard = document.querySelector(templateCardSelector).content;
     this._cardElement = this._newCard.querySelector('.card').cloneNode(true);
     this._cardImage = this._cardElement.querySelector('.card__image');
@@ -14,6 +14,7 @@ class Card {
     this._idUser = idUser;
     this._idOwnerCard = owner._id;
     this._likesArray = likes;
+    this._idCard = _id;
   }
 
   // наполнение информацией
@@ -22,6 +23,7 @@ class Card {
     this._cardImage.alt = this._newCardName;
     this._cardTitle.textContent = this._newCardName;
     this._counterLikesElement.textContent = this._likesArray.length;
+
   };
 
   _addListenersCard = () => {
@@ -43,7 +45,7 @@ class Card {
   }
 
   _handleRemoveCard = () => {
-    this._handleClickButtonDelete(this._cardElement)
+    this._handleClickButtonDelete(this._cardElement, this._idCard)
   }
 
   _handleClickButtonLike = () => {
@@ -67,6 +69,8 @@ class Card {
     this._setEventListeners();
     return this._cardElement
   }
+
+
 }
 
 export default Card;

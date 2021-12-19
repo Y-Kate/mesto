@@ -32,8 +32,14 @@ const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
 const userInfo = new UserInfo(profileSelectors);
 const popupWhithСonsent = new PopupWhithСonsent(
   popupWhithСonsentSelector,
-  (element) => {
-    element.remove();
+  (element, elementId) => {
+    api.deleteCard( elementId )
+      .then(() => { 
+        element.remove();
+      })
+      .catch((err) => {
+        console.log('err', err);
+      })
   }
 );
 
@@ -111,8 +117,8 @@ popupFormAuthor.setEventListeners();
 popupWhithImage.setEventListeners();
 popupWhithСonsent.setEventListeners();
 
-function handleClickButtonTrash(cardElement) {
-  popupWhithСonsent.open(cardElement);
+function handleClickButtonTrash(cardElement, cardId) {
+  popupWhithСonsent.open(cardElement, cardId);
 }
 
 function handleClickImg(dataCard) {

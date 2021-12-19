@@ -7,9 +7,10 @@ class PopupWhithСonsent extends Popup {
     this._handleRemoveCard = handleRemoveCard;
   }
 
-  open = (element) => {
+  open = (element, elementId) => {
     super.open();
     this._element = element;
+    this._elementId = elementId;
   }
 
   setEventListeners = () => {
@@ -19,7 +20,7 @@ class PopupWhithСonsent extends Popup {
 
   _handleSubmitButton = (evt) => {
     evt.preventDefault();
-    this._handleRemoveCard(this._element);
+    this._handleRemoveCard(this._element, this._elementId);
     this.close(); 
   }
 }
