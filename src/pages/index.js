@@ -6,6 +6,7 @@ import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import Api from '../components/Api';
 import UserInfo from '../components/UserInfo.js';
+import PopupWhithСonsent from '../components/PopupWhithСonsent.js';
 import {
   initialCards,
   buttonEdit,
@@ -21,23 +22,26 @@ import {
   popupWithImageSelector,
   catalogCardsSelector,
   profileSelectors,
+  popupWhithСonsentSelector
 } from '../utils/constants.js'
 
 // создаем экземпляры классов
 const api = new Api();
 const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit);
 const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
-
-const userInfo = new UserInfo(profileSelectors)
-
-
+const userInfo = new UserInfo(profileSelectors);
+const popupWhithСonsent = new PopupWhithСonsent(
+  popupWhithСonsentSelector,
+  (element) => {
+    element.remove();
+  }
+);
 
 const popupFormAuthor = new PopupWithForm(
   popupEditSelector,
   (authorValues) => {
     api.editProfile( authorValues.authorName, authorValues.authorAbout )
       .then((newProfileData) => {
-        console.log('newProfileData', newProfileData)
         userInfo.setUserInfo(newProfileData)
       })
       .catch((err) => {
@@ -102,7 +106,11 @@ formAddCardValidator.enableValidation();
 popupFormAuthor.setEventListeners();
 popupFormNewCard.setEventListeners();
 popupWhithImage.setEventListeners();
+popupWhithСonsent.setEventListeners();
 
+function handleClickButtonTrash(cardElement) {
+  popupWhithСonsent.open(cardElement);
+}
 
 function handleClickImg(dataCard) {
   popupWhithImage.open(dataCard);
@@ -114,7 +122,8 @@ function createNewCard(card, templateCardSelector, handleClickImg) {
     card,
     templateCardSelector,
     handleClickImg,
-    userId
+    userId,
+    handleClickButtonTrash,
   );
   return prototypeCard.createCard();
 }

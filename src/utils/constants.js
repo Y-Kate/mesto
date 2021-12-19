@@ -51,6 +51,9 @@ export const formCardAdd = popupAdd.querySelector('.form-popup');
 // popup просмотра карточки
 export const popupWithImageSelector = '.popup_type_img';
 
+// popup удаления карточки
+export const popupWhithСonsentSelector = '.popup_type_delete-card'
+
 // каталог для карточек
 export const catalogCardsSelector = '.catalog';
 

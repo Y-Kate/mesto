@@ -14,6 +14,7 @@
     <main class="main">
       <section class="profile">
         <img class="profile__avatar" src="<%=require('./images/kusto.jpg')%>" alt="Аватар">
+        <div class="profile__avatar-overlay"></div>
         <div class="profile__info">
           <div class="profile__name-overlay">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -96,7 +97,7 @@
         <button class="popup__close" type="button"></button>
         <form class="form-popup" name="delete-card" novalidate>
           <h3 class="form-popup__title">Вы уверены?</h3>
-          <button type="submit" class="form-popup__button-save" aria-label="Да">Создать</button>
+          <button type="submit" class="form-popup__button-save" aria-label="Да">Да</button>
         </form>
       </div>
     </div>

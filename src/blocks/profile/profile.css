@@ -4,6 +4,7 @@
   align-items: center;
   color: #fff;
   width: 100%;
+  position: relative;
 }
 
 @media (min-width: 620px) {

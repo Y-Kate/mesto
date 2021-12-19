@@ -16,6 +16,7 @@
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__modify/profile__modify.css);
 @import url(../blocks/profile/__name-overlay/profile__name-overlay.css);
+@import url(../blocks/profile/__avatar-overlay/profile__avatar-overlay.css);
 /*catalog*/
 @import url(../blocks/catalog/catalog.css);
 @import url(../blocks/card/card.css);
