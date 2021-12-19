@@ -51,60 +51,63 @@ const popupFormAuthor = new PopupWithForm(
   }
 );
 
-const popupFormNewCard = new PopupWithForm(
-  popupAddSelector,
-  (newCardValues) => {
-    api.addNewCard( newCardValues.cardName, newCardValues.cardLink )
-      .then((cardData) => {
-        const newCard = createNewCard(cardData, templateCardSelector, handleClickImg)
-        // cardList.addItem(newCard) // TODO разобраться
-      })
-      .catch((err) => {
-        console.log('err', err);
-      })
-    popupFormNewCard.close();
-  }
-);
-
 const popupWhithImage = new PopupWithImage(popupWithImageSelector)
 
-api.getUserInfo()
-  .then((res) => {
-    const name = res.name;
-    const about = res.about;
-    const avatar = res.avatar;
-    const idUser = res._id;
-    userInfo.setUserId(idUser);
-    userInfo.setUserInfo( { name , about } );
-    userInfo.setAvatarUser(avatar)
-  })
+Promise.all([api.getUserInfo(), api.getCards()])
+  .then(([userData, cardsArr]) => {
+
+      const name = userData.name;
+      const about = userData.about;
+      const avatar = userData.avatar;
+      const idUser = userData._id;
+      userInfo.setUserId(idUser);
+      userInfo.setUserInfo( { name , about } );
+      userInfo.setAvatarUser(avatar)
+
+      const cardList = new Section(
+        {
+          items: cardsArr,
+          renderer: function renderer(card) {
+            const newCard = createNewCard(card, templateCardSelector, handleClickImg)
+            cardList.addItem(newCard)
+          }
+        },
+        catalogCardsSelector
+      )
+      cardList.renderItems();
+      
+      const popupFormNewCard = new PopupWithForm(
+        popupAddSelector,
+        (newCardValues) => {
+          api.addNewCard( newCardValues.cardName, newCardValues.cardLink )
+            .then((cardData) => {
+              const newCard = createNewCard(cardData, templateCardSelector, handleClickImg);
+              cardList.addItem(newCard) 
+            })
+            .catch((err) => {
+              console.log('err', err);
+            })
+          popupFormNewCard.close();
+        }
+      );
+      popupFormNewCard.setEventListeners();
+      function handleClickButtonAdd() {
+        formAddCardValidator.clearErrors();
+        popupFormNewCard.open();
+      }
+      buttonAdd.addEventListener('click', handleClickButtonAdd);
+
+    }
+  )
   .catch((err) => {
     console.log(err);
   })
 
-api.getCards()
-  .then((cardsArr) => {
-    const cardList = new Section(
-      {
-        items: cardsArr,
-        renderer: function renderer(card) {
-          const newCard = createNewCard(card, templateCardSelector, handleClickImg)
-          cardList.addItem(newCard)
-        }
-      },
-      catalogCardsSelector
-    )
-    cardList.renderItems();
-  })
-  .catch((err) => {
-    console.log(err);
-  })
 
 // запускаем экземпляры классов
 formEditProfileValidator.enableValidation();
 formAddCardValidator.enableValidation();
 popupFormAuthor.setEventListeners();
-popupFormNewCard.setEventListeners();
 popupWhithImage.setEventListeners();
 popupWhithСonsent.setEventListeners();
 
@@ -138,11 +141,11 @@ function handleClickButtonEdit() {
   popupFormAuthor.open();
 }
 
-function handleClickButtonAdd() {
-  formAddCardValidator.clearErrors();
-  popupFormNewCard.open();
-}
+// function handleClickButtonAdd() {
+//   formAddCardValidator.clearErrors();
+//   popupFormNewCard.open();
+// }
 
 // слушатели кнопок на странице
 buttonEdit.addEventListener('click', handleClickButtonEdit);
-buttonAdd.addEventListener('click', handleClickButtonAdd);
+// buttonAdd.addEventListener('click', handleClickButtonAdd);
