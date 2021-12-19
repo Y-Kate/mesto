@@ -87,6 +87,37 @@ class Api {
       return Promise.reject(`Ошибка ${res.status}`);
     })
   }
+
+  setLike(cardId) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-31/cards/${cardId}/likes`, {
+      method: 'PUT',  
+      headers: {
+        authorization: 'c1e5c7f7-edbc-434c-87e1-05004dec9bd7',
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка ${res.status}`);
+    })
+  }
+
+  deleteLike(cardId) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-31/cards/${cardId}/likes`, {
+      method: 'DELETE',  
+      headers: {
+        authorization: 'c1e5c7f7-edbc-434c-87e1-05004dec9bd7',
+      },
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка ${res.status}`);
+    })
+  }
 }
 
 

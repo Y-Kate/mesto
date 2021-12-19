@@ -14,6 +14,10 @@ class Section {
   addItem = (element) => {
     this._containerElement.append(element)
   }
+
+  addItemToStart = (element) => {
+    this._containerElement.prepend(element)
+  }
 }
 
 export default Section;

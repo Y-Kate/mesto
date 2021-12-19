@@ -61,50 +61,47 @@ const popupWhithImage = new PopupWithImage(popupWithImageSelector)
 
 Promise.all([api.getUserInfo(), api.getCards()])
   .then(([userData, cardsArr]) => {
-      console.log(cardsArr[0].likes.length);
-      const name = userData.name;
-      const about = userData.about;
-      const avatar = userData.avatar;
-      const idUser = userData._id;
-      userInfo.setUserId(idUser);
-      userInfo.setUserInfo( { name , about } );
-      userInfo.setAvatarUser(avatar)
+    const name = userData.name;
+    const about = userData.about;
+    const avatar = userData.avatar;
+    const idUser = userData._id;
+    userInfo.setUserId(idUser);
+    userInfo.setUserInfo( { name , about } );
+    userInfo.setAvatarUser(avatar)
 
-      const cardList = new Section(
-        {
-          items: cardsArr,
-          renderer: function renderer(card) {
-            const newCard = createNewCard(card, templateCardSelector, handleClickImg)
-            cardList.addItem(newCard)
-          }
-        },
-        catalogCardsSelector
-      )
-      cardList.renderItems();
-      
-      const popupFormNewCard = new PopupWithForm(
-        popupAddSelector,
-        (newCardValues) => {
-          api.addNewCard( newCardValues.cardName, newCardValues.cardLink )
-            .then((cardData) => {
-              const newCard = createNewCard(cardData, templateCardSelector, handleClickImg);
-              cardList.addItem(newCard) 
-            })
-            .catch((err) => {
-              console.log('err', err);
-            })
-          popupFormNewCard.close();
+    const cardList = new Section(
+      {
+        items: cardsArr,
+        renderer: function renderer(card) {
+          const newCard = createNewCard(card, templateCardSelector, handleClickImg)
+          cardList.addItem(newCard)
         }
-      );
-      popupFormNewCard.setEventListeners();
-      function handleClickButtonAdd() {
-        formAddCardValidator.clearErrors();
-        popupFormNewCard.open();
+      },
+      catalogCardsSelector
+    )
+    cardList.renderItems();
+    
+    const popupFormNewCard = new PopupWithForm(
+      popupAddSelector,
+      (newCardValues) => {
+        api.addNewCard( newCardValues.cardName, newCardValues.cardLink )
+          .then((cardData) => {
+            const newCard = createNewCard(cardData, templateCardSelector, handleClickImg);
+            cardList.addItemToStart(newCard) 
+          })
+          .catch((err) => {
+            console.log('err', err);
+          })
+        popupFormNewCard.close();
       }
-      buttonAdd.addEventListener('click', handleClickButtonAdd);
-
+    );
+    popupFormNewCard.setEventListeners();
+    function handleClickButtonAdd() {
+      formAddCardValidator.clearErrors();
+      popupFormNewCard.open();
     }
-  )
+    buttonAdd.addEventListener('click', handleClickButtonAdd);
+  })
   .catch((err) => {
     console.log(err);
   })
@@ -133,6 +130,7 @@ function createNewCard(card, templateCardSelector, handleClickImg) {
     handleClickImg,
     userId,
     handleClickButtonTrash,
+    handleClickButtonLike
   );
   return prototypeCard.createCard();
 }
@@ -145,6 +143,28 @@ function handleClickButtonEdit() {
   inputAbout.value = dataUser.about;
   formEditProfileValidator.checkInputsError();
   popupFormAuthor.open();
+}
+
+function handleClickButtonLike() {
+  const userId = userInfo.getUserId();
+  if (!this._isLiked()) {
+    api.setLike(userId)
+      .then((res) => {
+        console.log(res); 
+        this._buttonLike.classList.add('card__button-like_active');
+      })
+      .catch((err) => {
+        console.log('err', err);
+      })
+  } else {
+    api.deleteLike(userId)
+      .then((res) => { 
+      this._buttonLike.classList.remove('card__button-like_active');
+      })
+      .catch((err) => {
+        console.log('err', err);
+      })
+  }
 }
 
 // function handleClickButtonAdd() {
