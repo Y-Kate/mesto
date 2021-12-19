@@ -20,6 +20,7 @@ class PopupWhithСonsent extends Popup {
   _handleSubmitButton = (evt) => {
     evt.preventDefault();
     this._handleRemoveCard(this._element);
+    this.close(); 
   }
 }
 

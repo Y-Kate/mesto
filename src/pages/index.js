@@ -55,7 +55,7 @@ const popupWhithImage = new PopupWithImage(popupWithImageSelector)
 
 Promise.all([api.getUserInfo(), api.getCards()])
   .then(([userData, cardsArr]) => {
-
+      console.log(cardsArr[0].likes.length);
       const name = userData.name;
       const about = userData.about;
       const avatar = userData.avatar;
