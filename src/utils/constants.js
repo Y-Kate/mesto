@@ -28,6 +28,7 @@ export const initialCards = [
 // кнопки на странице
 export const buttonEdit = document.querySelector('.profile__modify');
 export const buttonAdd = document.querySelector('.profile__button-add');
+export const avatarOverlayElement = document.querySelector('.profile__avatar-overlay');
 
 // профиль
 export const profileSelectors = {
@@ -42,6 +43,11 @@ export const popupEdit = document.querySelector('.popup_type_edit');
 export const inputName = popupEdit.querySelector('.form-popup__input_type_name');
 export const inputAbout = popupEdit.querySelector('.form-popup__input_type_profession');
 export const formProfileEdit = popupEdit.querySelector('.form-popup');
+
+// popup редактирования аватара профиля
+export const popupAvatarSelector = '.popup_type_edit-avatar';
+const popupAvatarElement = document.querySelector(popupAvatarSelector);
+export const formEditAvatarElement = popupAvatarElement.querySelector('.form-popup');
 
 // popup добавления карточки
 export const popupAddSelector = '.popup_type_add';

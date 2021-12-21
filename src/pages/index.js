@@ -22,13 +22,17 @@ import {
   popupWithImageSelector,
   catalogCardsSelector,
   profileSelectors,
-  popupWhithСonsentSelector
+  popupWhithСonsentSelector,
+  popupAvatarSelector,
+  avatarOverlayElement,
+  formEditAvatarElement
 } from '../utils/constants.js'
 
 // создаем экземпляры классов
 const api = new Api();
 const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit);
 const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
+const formEditAvatar = new FormValidator(dataClasses, formEditAvatarElement);
 const userInfo = new UserInfo(profileSelectors);
 const popupWhithСonsent = new PopupWhithСonsent(
   popupWhithСonsentSelector,
@@ -57,6 +61,18 @@ const popupFormAuthor = new PopupWithForm(
   }
 );
 
+const popupFormAvatar = new PopupWithForm(
+  popupAvatarSelector,
+  ( { avatarLink } ) => {
+    api.updateAvatar(avatarLink)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log('err', err);
+      })
+  }
+);
 const popupWhithImage = new PopupWithImage(popupWithImageSelector)
 
 Promise.all([api.getUserInfo(), api.getCards()])
@@ -110,9 +126,11 @@ Promise.all([api.getUserInfo(), api.getCards()])
 // запускаем экземпляры классов
 formEditProfileValidator.enableValidation();
 formAddCardValidator.enableValidation();
+formEditAvatar.enableValidation();
 popupFormAuthor.setEventListeners();
 popupWhithImage.setEventListeners();
 popupWhithСonsent.setEventListeners();
+popupFormAvatar.setEventListeners();
 
 function handleClickButtonTrash(cardElement, cardId) {
   popupWhithСonsent.open(cardElement, cardId);
@@ -135,7 +153,6 @@ function createNewCard(card, templateCardSelector, handleClickImg) {
   return prototypeCard.createCard();
 }
 
-
 // обработчики слушателей кнопок
 function handleClickButtonEdit() {
   const dataUser = userInfo.getUserInfo();
@@ -146,7 +163,6 @@ function handleClickButtonEdit() {
 }
 
 function handleClickButtonLike() {
-  console.log('this._isLiked', this._isLiked());
   if (!this._isLiked()) {
     api.setLike(this._idCard)
       .then((res) => {
@@ -170,11 +186,10 @@ function handleClickButtonLike() {
   }
 }
 
-// function handleClickButtonAdd() {
-//   formAddCardValidator.clearErrors();
-//   popupFormNewCard.open();
-// }
+function handleClickAvatar() {
+  popupFormAvatar.open();
+}
 
 // слушатели кнопок на странице
 buttonEdit.addEventListener('click', handleClickButtonEdit);
-// buttonAdd.addEventListener('click', handleClickButtonAdd);
+avatarOverlayElement.addEventListener('click', handleClickAvatar);
