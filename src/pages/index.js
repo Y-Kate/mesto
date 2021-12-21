@@ -65,8 +65,9 @@ const popupFormAvatar = new PopupWithForm(
   popupAvatarSelector,
   ( { avatarLink } ) => {
     api.updateAvatar(avatarLink)
-      .then((res) => {
-        console.log(res);
+      .then((newProfileData) => {
+        popupFormAvatar.close();
+        userInfo.setAvatarUser(newProfileData.avatar);
       })
       .catch((err) => {
         console.log('err', err);
