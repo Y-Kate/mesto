@@ -146,20 +146,23 @@ function handleClickButtonEdit() {
 }
 
 function handleClickButtonLike() {
-  const userId = userInfo.getUserId();
+  console.log('this._isLiked', this._isLiked());
   if (!this._isLiked()) {
-    api.setLike(userId)
+    api.setLike(this._idCard)
       .then((res) => {
-        console.log(res); 
-        this._buttonLike.classList.add('card__button-like_active');
+        this._likesArray = res.likes;
+        this.checkLike();
+        this.setCountLikes();
       })
       .catch((err) => {
         console.log('err', err);
       })
   } else {
-    api.deleteLike(userId)
-      .then((res) => { 
-      this._buttonLike.classList.remove('card__button-like_active');
+    api.deleteLike(this._idCard)
+      .then((res) => {
+        this._likesArray = res.likes;
+        this.checkLike();
+        this.setCountLikes();
       })
       .catch((err) => {
         console.log('err', err);

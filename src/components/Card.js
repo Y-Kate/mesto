@@ -23,8 +23,6 @@ class Card {
     this._cardImage.src = this._newCardLink;
     this._cardImage.alt = this._newCardName;
     this._cardTitle.textContent = this._newCardName;
-    this._counterLikesElement.textContent = this._likesArray.length;
-
   };
 
   _addListenersCard = () => {
@@ -49,10 +47,22 @@ class Card {
     this._handleClickButtonDelete(this._cardElement, this._idCard)
   }
 
-  _isLiked() {
+  _isLiked = () => {
     return this._likesArray.some((authorLike) => {
-      return authorLike._id === this._idOwnerCard
+      return authorLike._id === this._idUser;
     })
+  }
+
+  checkLike = () => {
+    if (this._isLiked()) {
+      this._buttonLike.classList.add('card__button-like_active');
+    } else {
+      this._buttonLike.classList.remove('card__button-like_active');
+    }
+  }
+
+  setCountLikes = () => {
+    this._counterLikesElement.textContent = this._likesArray.length;
   }
 
   _setEventListeners = () => {
@@ -68,6 +78,8 @@ class Card {
 
   createCard = () => {
     this._packCard();
+    this.setCountLikes();
+    this.checkLike();
     this._checkAuthorCard();
     this._setEventListeners();
     return this._cardElement
