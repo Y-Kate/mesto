@@ -6,6 +6,7 @@ class PopupWithForm extends Popup {
     this._form = this._popup.querySelector('.form-popup');
     this._handleSubmit = handleSubmit;
     this._inputs = Array.from(this._form.querySelectorAll('.form-popup__input'));
+    this._buttonSubmitElement = this._form.querySelector('.form-popup__button-save');
   }
 
   _handleSubmitForm = (evt) => {
@@ -27,6 +28,10 @@ class PopupWithForm extends Popup {
     this._form.addEventListener('submit', this._handleSubmitForm);
   };
   
+  setButtonSubmitName = ( nameButton ) => {
+    this._buttonSubmitElement.textContent = nameButton;
+  };
+
   close = () => {
     super.close();
     this._form.reset(); // сбрасывание формы

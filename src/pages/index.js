@@ -6,9 +6,8 @@ import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import Api from '../components/Api';
 import UserInfo from '../components/UserInfo.js';
-import PopupWhithСonsent from '../components/PopupWhithСonsent.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import {
-  initialCards,
   buttonEdit,
   buttonAdd,
   inputName,
@@ -22,20 +21,26 @@ import {
   popupWithImageSelector,
   catalogCardsSelector,
   profileSelectors,
-  popupWhithСonsentSelector,
+  popupWithConfirmationSelector,
   popupAvatarSelector,
   avatarOverlayElement,
   formEditAvatarElement
 } from '../utils/constants.js'
 
 // создаем экземпляры классов
-const api = new Api();
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-31',
+  headers: {
+    authorization: 'c1e5c7f7-edbc-434c-87e1-05004dec9bd7',
+    'Content-Type': 'application/json'
+  }});
+
 const formEditProfileValidator = new FormValidator(dataClasses, formProfileEdit);
 const formAddCardValidator = new FormValidator(dataClasses, formCardAdd);
 const formEditAvatar = new FormValidator(dataClasses, formEditAvatarElement);
 const userInfo = new UserInfo(profileSelectors);
-const popupWhithСonsent = new PopupWhithСonsent(
-  popupWhithСonsentSelector,
+const popupWithConfirmation = new PopupWithConfirmation(
+  popupWithConfirmationSelector,
   (element, elementId) => {
     api.deleteCard( elementId )
       .then(() => { 
@@ -50,6 +55,7 @@ const popupWhithСonsent = new PopupWhithСonsent(
 const popupFormAuthor = new PopupWithForm(
   popupEditSelector,
   (authorValues) => {
+    popupFormAuthor.setButtonSubmitName('Сохранение...');
     api.editProfile( authorValues.authorName, authorValues.authorAbout )
       .then((newProfileData) => {
         userInfo.setUserInfo(newProfileData)
@@ -57,23 +63,31 @@ const popupFormAuthor = new PopupWithForm(
       .catch((err) => {
         console.log('err', err);
       })
-    popupFormAuthor.close();
+      .finally(() => {
+        popupFormAuthor.setButtonSubmitName('Сохранить');
+        popupFormAuthor.close();
+      })
   }
 );
 
 const popupFormAvatar = new PopupWithForm(
   popupAvatarSelector,
   ( { avatarLink } ) => {
+    popupFormAvatar.setButtonSubmitName('Сохранение...');
     api.updateAvatar(avatarLink)
       .then((newProfileData) => {
-        popupFormAvatar.close();
         userInfo.setAvatarUser(newProfileData.avatar);
       })
       .catch((err) => {
         console.log('err', err);
       })
+      .finally(() => {
+        popupFormAvatar.setButtonSubmitName('Сохранить');
+        popupFormAvatar.close();
+      })
   }
 );
+
 const popupWhithImage = new PopupWithImage(popupWithImageSelector)
 
 Promise.all([api.getUserInfo(), api.getCards()])
@@ -101,6 +115,7 @@ Promise.all([api.getUserInfo(), api.getCards()])
     const popupFormNewCard = new PopupWithForm(
       popupAddSelector,
       (newCardValues) => {
+        popupFormNewCard.setButtonSubmitName('Создание...');
         api.addNewCard( newCardValues.cardName, newCardValues.cardLink )
           .then((cardData) => {
             const newCard = createNewCard(cardData, templateCardSelector, handleClickImg);
@@ -109,7 +124,10 @@ Promise.all([api.getUserInfo(), api.getCards()])
           .catch((err) => {
             console.log('err', err);
           })
-        popupFormNewCard.close();
+          .finally(() => {
+            popupFormNewCard.setButtonSubmitName('Создать');
+            popupFormNewCard.close();
+          })
       }
     );
     popupFormNewCard.setEventListeners();
@@ -130,11 +148,11 @@ formAddCardValidator.enableValidation();
 formEditAvatar.enableValidation();
 popupFormAuthor.setEventListeners();
 popupWhithImage.setEventListeners();
-popupWhithСonsent.setEventListeners();
+popupWithConfirmation.setEventListeners();
 popupFormAvatar.setEventListeners();
 
 function handleClickButtonTrash(cardElement, cardId) {
-  popupWhithСonsent.open(cardElement, cardId);
+  popupWithConfirmation.open(cardElement, cardId);
 }
 
 function handleClickImg(dataCard) {

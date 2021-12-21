@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
 
-class PopupWhithСonsent extends Popup {
+class PopupWithConfirmation extends Popup {
   constructor( popupSelector, handleRemoveCard ) {
     super(popupSelector);
     this._form = this._popup.querySelector('.form-popup');
@@ -25,4 +25,4 @@ class PopupWhithСonsent extends Popup {
   }
 }
 
-export default PopupWhithСonsent;
+export default PopupWithConfirmation;
