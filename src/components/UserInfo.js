@@ -14,12 +14,16 @@ class UserInfo {
   };
 
   setUserInfo(dataUser) {
-    this._authorNameElement.textContent = dataUser.name;
-    this._authorAboutElement.textContent = dataUser.about;
+    if (dataUser) {
+      this._authorNameElement.textContent = dataUser.name;
+      this._authorAboutElement.textContent = dataUser.about;
+    }
   };
 
   setUserId(userId) {
-    this._authorId = userId;
+    if (userId) {
+      this._authorId = userId;
+    }
   }
 
   getUserId() {
@@ -27,7 +31,9 @@ class UserInfo {
   }
 
   setAvatarUser(avatarLink) {
-    this._authorAvatarElement.src = avatarLink;
+    if (avatarLink) {
+      this._authorAvatarElement.src = avatarLink;
+    }
   }
 }
 

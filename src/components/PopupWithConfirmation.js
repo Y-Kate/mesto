@@ -7,10 +7,9 @@ class PopupWithConfirmation extends Popup {
     this._handleRemoveCard = handleRemoveCard;
   }
 
-  open = (element, elementId) => {
+  open = (card) => {
     super.open();
-    this._element = element;
-    this._elementId = elementId;
+    this._card = card;
   }
 
   setEventListeners = () => {
@@ -20,8 +19,7 @@ class PopupWithConfirmation extends Popup {
 
   _handleSubmitButton = (evt) => {
     evt.preventDefault();
-    this._handleRemoveCard(this._element, this._elementId);
-    this.close(); 
+    this._handleRemoveCard(this._card);
   }
 }
 

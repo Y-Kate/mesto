@@ -14,8 +14,8 @@ class Card {
     this._handleClickButtonLike = handleClickButtonLike;
     this._idUser = idUser;
     this._idOwnerCard = owner._id;
-    this._likesArray = likes;
-    this._idCard = _id;
+    this.likesArray = likes;
+    this.idCard = _id;
   }
 
   // наполнение информацией
@@ -44,17 +44,22 @@ class Card {
   }
 
   _handleRemoveCard = () => {
-    this._handleClickButtonDelete(this._cardElement, this._idCard)
+    this._handleClickButtonDelete(this)
   }
 
-  _isLiked = () => {
-    return this._likesArray.some((authorLike) => {
+  removeCard() {
+    this._cardElement.remove();
+    this._cardElement = null;
+} 
+
+  isLiked = () => {
+    return this.likesArray.some((authorLike) => {
       return authorLike._id === this._idUser;
     })
   }
 
   checkLike = () => {
-    if (this._isLiked()) {
+    if (this.isLiked()) {
       this._buttonLike.classList.add('card__button-like_active');
     } else {
       this._buttonLike.classList.remove('card__button-like_active');
@@ -62,7 +67,7 @@ class Card {
   }
 
   setCountLikes = () => {
-    this._counterLikesElement.textContent = this._likesArray.length;
+    this._counterLikesElement.textContent = this.likesArray.length;
   }
 
   _setEventListeners = () => {
